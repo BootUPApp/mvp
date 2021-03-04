@@ -10,7 +10,7 @@ router.get("/recruiter", (req,res, next) => {
   })
 })
 
-// GET Specifc Recruiter / Insomnia Test x
+// GET Specific Recruiter / Insomnia Test x
 router.get("/recruiter/:id", (req,res, next) => {
   Recruiter.findById(req.params.id).then((selectedRecruiterfromDB) => {
       res.status(200).json(selectedRecruiterfromDB);
