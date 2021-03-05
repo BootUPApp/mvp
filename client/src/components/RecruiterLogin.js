@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function GraduateLogin() {
+export default function RecruiterLogin() {
   return (
     <div>
-      <h1>Graduate Login</h1>
+      <h1>Recruiter Login</h1>
       <form>
         <label htmlFor="username">Username: </label>
           <input

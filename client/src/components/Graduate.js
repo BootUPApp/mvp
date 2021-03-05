@@ -6,6 +6,7 @@ export default function Graduate() {
     <div>
       <h1>Graduate</h1>
       <Link to={'/graduate/login'}>Login</Link>
+      <br/>
       <Link to={'/graduate/signup'}>Signup</Link>
     </div>
   )

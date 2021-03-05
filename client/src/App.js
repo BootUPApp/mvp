@@ -7,6 +7,8 @@ import Recruiter from './components/Recruiter';
 import Graduate from './components/Graduate';
 import GraduateLogin from './components/GraduateLogin'
 import GraduateSignup from './components/GraduateSignup'
+import RecruiterLogin from './components/RecruiterLogin'
+import RecruiterSignup from './components/RecruiterSignup'
 
 export default function App() {
   return (
@@ -18,6 +20,8 @@ export default function App() {
         <Route exact path='/graduate' component={Graduate} />
         <Route exact path='/graduate/login' component={GraduateLogin} />
         <Route exact path='/graduate/signup' component={GraduateSignup} />
+        <Route exact path='/recruiter/login' component={RecruiterLogin} />
+        <Route exact path='/recruiter/signup' component={RecruiterSignup} />
       </Switch> 
     </div>
   )
