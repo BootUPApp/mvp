@@ -1,10 +1,9 @@
 const router = require("express").Router();
-const Recruiter = require("../models/Recruiter");
-const Graduate = require("../models/Graduate");
+const User = require("../models/User.model")
 
 // GET Recruiter / Insomnia Test x
 router.get("/recruiter", (req,res, next) => {
-  Recruiter.find().then(recruitersFromDB => {
+  User.find().then(recruitersFromDB => {
       res.json(recruitersFromDB);
   }).catch(error => {
     next(error);
@@ -13,7 +12,7 @@ router.get("/recruiter", (req,res, next) => {
 
 // GET Specific Recruiter / Insomnia Test x
 router.get("/recruiter/:id", (req,res, next) => {
-  Recruiter.findById(req.params.id).then((selectedRecruiterfromDB) => {
+  User.findById(req.params.id).then((selectedRecruiterfromDB) => {
       res.status(200).json(selectedRecruiterfromDB);
   }).catch(error => {
     next(error);
@@ -21,13 +20,15 @@ router.get("/recruiter/:id", (req,res, next) => {
 })
 
 // POST Recruiter / Insomnia Test x
-router.post("/recruiter", (req, res, next) => {
-  Recruiter.create({
+router.post("/recruiter/signup", (req, res, next) => {
+  User.create({
      firstName: req.body.firstName,
      lastName: req.body.lastName,
      profileImage: req.body.profileImage, // Attention needs to be req.file due to multer/Cloudniary
      emailAddress: req.body.emailAddress,
      companyName: req.body.companyName,
+     username: req.body.username,
+     password: req.body.password,
      // challenges: //
      // inbox:
   }).then(recruiterToDB => {
@@ -39,12 +40,13 @@ router.post("/recruiter", (req, res, next) => {
 
 // PUT Recruiter  - Update Profile / Insomnia Test x
 router.put("/recruiter/:id", (req,res,next) => {
-  Recruiter.findByIdAndUpdate(req.params.id, {
+  User.findByIdAndUpdate(req.params.id, {
     firstName: req.body.firstName,
     secondName: req.body.secondName,
     profileImage: req.body.profileImage, // Attention needs to be req.file due to multer/Cloudniary
     emailAddress: req.body.emailAddress,
     companyName: req.body.companyName, 
+    username: req.body.username
   }, 
   {new: true})
   .then(recruitersFromDB => {
@@ -56,22 +58,42 @@ router.put("/recruiter/:id", (req,res,next) => {
 
 // DELETE Recruiter 
 router.delete("/recruiter/:id", (req,res,next) => {
-  Recruiter.findByIdAndDelete(req.params.id).then(deletedRecruiter => {
-      res.status(200).json({message: 'Profile Succesfully deleted'})
+  User.findByIdAndDelete(req.params.id).then(deletedRecruiter => {
+      res.status(200).json({message: 'Profile successfully deleted'})
   }).catch(error => {
     next(error);
   })
 })
 
-/* Graduates Routes */
 
-// POST Graduate
-router.post("/graduate", (req,res,next) => {
-  const {firstName, lastName, userName, profileImage, catchphrase,bootCampGraduation,emailAddress, password, bootCampName, bootCampCity, industry, yearsInIndustry, languagesSpoken,currentlyLearning, myGif, githubUsername, githubProfile,linkedInProfile, mediumProfile} = req.body;  // **! BE Mindful Imagefile probably needs to be a req.file
-  Graduate.create({
+
+/* !!! Graduates Routes  !!!*/
+
+// Get Graduates / Insomnia Test x
+router.get("/graduates", (req,res,next) => {
+  User.find().then(graduatesFromDB => {
+        res.status(200).json(graduatesFromDB);
+      }).catch(error => {
+        next(error);  
+      })
+})
+
+// // Get Selected Graduate / Insomnia Test x
+router.get("/graduates/:id", (req,res,next) => {
+  User.findById(req.params.id).then(specficGraduateFromDB => {
+    res.status(200).json(specficGraduateFromDB);
+  }).catch(error => {
+    next(error);  
+  })
+})
+
+// POST Graduate / Insomnia Test X
+router.post("/graduate/signup", (req,res,next) => {
+  const {firstName, lastName, username, profileImage, catchphrase,bootCampGraduation,emailAddress, password, bootCampName, bootCampCity, industry, yearsInIndustry, languagesSpoken,currentlyLearning, myGif, githubUsername, githubProfile,linkedInProfile, mediumProfile} = req.body;  // **! BE Mindful Imagefile probably needs to be a req.file
+  User.create({
     firstName,
     lastName, 
-    userName, 
+    username, 
     profileImage,  // **! BE Mindful Imagefile probably needs to be a req.file
     catchphrase,
     bootCampGraduation,
@@ -89,7 +111,6 @@ router.post("/graduate", (req,res,next) => {
     githubProfile,
     linkedInProfile, 
     mediumProfile, 
-
   }).then(sendGradToDB => {
     res.status(201).json(sendGradToDB)
   }).catch(error => {
@@ -97,9 +118,48 @@ router.post("/graduate", (req,res,next) => {
   })
 })
 
+// PUT Graduate / Insomnia Test X
+router.put("/graduates/:id", (req, res, next) => {
+  const {firstName, lastName, username, profileImage, catchphrase,bootCampGraduation,emailAddress, password, bootCampName, bootCampCity, industry, yearsInIndustry, languagesSpoken,currentlyLearning, myGif, githubUsername, githubProfile,linkedInProfile, mediumProfile} = req.body;  // **! BE Mindful Imagefile probably needs to be a req.file
+  User.findByIdAndUpdate(req.params.id,{
+    firstName,
+    lastName, 
+    username, 
+    profileImage,  // **! BE Mindful Imagefile probably needs to be a req.file
+    catchphrase,
+    bootCampGraduation,
+    emailAddress, 
+    password, 
+    bootCampName, 
+    bootCampCity, 
+    skills:[{ skill: req.body.skill, rating: req.body.rating}],
+    industry, 
+    yearsInIndustry, 
+    languagesSpoken,
+    currentlyLearning, 
+    myGif, 
+    githubUsername, 
+    githubProfile,
+    linkedInProfile, 
+    mediumProfile, 
+  }, {new: true}).then(sendGradToDB => {
+    res.status(201).json(sendGradToDB)
+  }).catch(error => {
+    next(error);
+  })
+})
 
+// Delete Graduate 
+router.delete("/graduates/:id", (req,res,next) => {
+  User.findByIdAndDelete(req.params.id).then(deletedGraduate => {
+      res.status(200).json({message: 'Profile successfully deleted'})
+  }).catch(error => {
+    next(error);
+  })
+})
 
 // You put the next routes here 👇
 // example: router.use("/auth", authRoutes)
 
 module.exports = router;
+

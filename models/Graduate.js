@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const User = require("./User.model");
+
 const graduateSchema = new Schema({
       firstName: {
             type: String,
@@ -7,17 +9,13 @@ const graduateSchema = new Schema({
       lastName: {
             type: String,
             lowercase: true},
-      userName: {
-            type: String,
-            unique: true},
+      username: [{type: Schema.Types.ObjectId, ref: User}],
       profileImage: String,
       catchphrase: String,
       emailAddress: {
             type: String,
             lowercase: true},
-      password: {
-            type: String,
-            min: 6},
+      password: [{type: Schema.Types.ObjectId, ref: User}],
       bootCampName: {
             type: String,
             lowercase: true},
