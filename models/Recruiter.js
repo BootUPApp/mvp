@@ -5,7 +5,7 @@ const recruiterSchema = new Schema({
       firstName: String,
       secondName: String,
       profileImage: String,
-      emailAddress: String,
+      profileImage: String,
       password: String,
       companyName: String,
       /*
