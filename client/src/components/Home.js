@@ -1,4 +1,7 @@
 import { React, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
+
 import axios from 'axios';
 
 export default function Home() {
@@ -25,8 +28,12 @@ export default function Home() {
 
   return (
     <div className='Home'>
-      <h1>Home</h1>
-      <h5> HELLO {displayRecruiters}</h5>
+      <h1>bootUP!</h1>
+      <h2>Hello {displayRecruiters}</h2>
+      <p>Filter through thousands of fresh bootcamp graduates and find your super perfect candidate that you can proudly show at your next company’s xmas party...</p>
+      <Link to={'/recruiter'}>Recruiter signup/login</Link>
+      <br />
+      <Link to={'/graduate'}>Graduate signup/login</Link>
     </div>
   )
 }
