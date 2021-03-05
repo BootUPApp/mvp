@@ -1,12 +1,13 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const User = require("./User.model");
 
 const recruiterSchema = new Schema({
       firstName: String,
       lastName: String,
+      username:[{type: Schema.Types.ObjectId, ref: User}],
       profileImage: String,
-      profileImage: String,
-      password: String,
+      password: [{type: Schema.Types.ObjectId, ref: User}],
       companyName: String,
       //challenges: [{type: Schema.Types.ObjectId, ref: Challenge}],
      // inbox: [String],
