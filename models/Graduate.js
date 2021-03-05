@@ -4,10 +4,10 @@ const graduateSchema = new Schema({
       firstName: {
             type: String,
             lowercase: true},
-      secondName: {
+      lastName: {
             type: String,
             lowercase: true},
-      username: {
+      userName: {
             type: String,
             unique: true},
       profileImage: String,
@@ -24,8 +24,11 @@ const graduateSchema = new Schema({
       bootCampCity: {
             type: String,
             lowercase: true},
-      bootCampGraduation: Date,
-      skills:[String],
+      bootCampGraduation: String,
+      skills: [{
+            skill: String,
+            rating: Number
+          }],
       industry: {
             type: String,
             lowercase: true},
@@ -37,9 +40,10 @@ const graduateSchema = new Schema({
       githubProfile: String,
       linkedInProfile: String,
       mediumProfile: String,
-      completedChallenges: [{
+     /*completedChallenges: [{
               type: Schema.Types.ObjectId,
-              ref: ChallengeId}]
+              ref: Challenge}]
+*/
 })
 const Graduate = mongoose.model('Graduate', graduateSchema);
 module.exports = Graduate
