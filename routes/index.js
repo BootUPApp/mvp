@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const Recruiter = require("../models/Recruiter");
+const Graduate = require("../models/Graduate");
 
 // GET Recruiter / Insomnia Test x
 router.get("/recruiter", (req,res, next) => {
@@ -23,7 +24,7 @@ router.get("/recruiter/:id", (req,res, next) => {
 router.post("/recruiter", (req, res, next) => {
   Recruiter.create({
      firstName: req.body.firstName,
-     secondName: req.body.secondName,
+     lastName: req.body.lastName,
      profileImage: req.body.profileImage, // Attention needs to be req.file due to multer/Cloudniary
      emailAddress: req.body.emailAddress,
      companyName: req.body.companyName,
@@ -61,6 +62,42 @@ router.delete("/recruiter/:id", (req,res,next) => {
     next(error);
   })
 })
+
+/* Graduates Routes */
+
+// POST Graduate
+router.post("/graduate", (req,res,next) => {
+  const {firstName, lastName, userName, profileImage, catchphrase,bootCampGraduation,emailAddress, password, bootCampName, bootCampCity, industry, yearsInIndustry, languagesSpoken,currentlyLearning, myGif, githubUsername, githubProfile,linkedInProfile, mediumProfile} = req.body;  // **! BE Mindful Imagefile probably needs to be a req.file
+  Graduate.create({
+    firstName,
+    lastName, 
+    userName, 
+    profileImage,  // **! BE Mindful Imagefile probably needs to be a req.file
+    catchphrase,
+    bootCampGraduation,
+    emailAddress, 
+    password, 
+    bootCampName, 
+    bootCampCity, 
+    skills:[{ skill: req.body.skill, rating: req.body.rating}],
+    industry, 
+    yearsInIndustry, 
+    languagesSpoken,
+    currentlyLearning, 
+    myGif, 
+    githubUsername, 
+    githubProfile,
+    linkedInProfile, 
+    mediumProfile, 
+
+  }).then(sendGradToDB => {
+    res.status(201).json(sendGradToDB)
+  }).catch(error => {
+    next(error);
+  })
+})
+
+
 
 // You put the next routes here 👇
 // example: router.use("/auth", authRoutes)
