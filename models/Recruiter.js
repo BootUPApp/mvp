@@ -5,7 +5,7 @@ const recruiterSchema = new Schema({
       firstName: String,
       lastName: String,
       profileImage: String,
-      emailAddress: String,
+      profileImage: String,
       password: String,
       companyName: String,
       //challenges: [{type: Schema.Types.ObjectId, ref: Challenge}],
