@@ -2,22 +2,9 @@ import axios from 'axios';
 
 
 
-const signup = (username, password) => {
-  return axios.
-    post('/api/auth/recruiter/signup', { username, password })
-    .then(response => {
-      return response.data
-    })
-    .catch(err => {
-      return err.response.data
-    })
-}
-
-
-
 
 const signupRecruiter = (username, password)  => {
-  return axios.post('api/auth/recruiter/signup', {
+  return axios.post('/api/auth/recruiter/signup', {
       username, password
   }).then(response => {
     return response.data
@@ -29,7 +16,7 @@ const signupRecruiter = (username, password)  => {
 
 
 const signupGraduate = (username, password)  => {
-  return axios.post("api/auth/graduate/signup", {
+  return axios.post("/api/auth/graduate/signup", {
       username, password
   }).then(response => {
     return response.data
@@ -39,7 +26,7 @@ const signupGraduate = (username, password)  => {
 }
 
 const loginRecruiter = (username, password)  => {
-  return axios.post("api/auth/recruiter/login", {
+  return axios.post("/api/auth/recruiter/login", {
       username, password
   }).then(response => {
     return response.data
@@ -49,7 +36,7 @@ const loginRecruiter = (username, password)  => {
 }
 
 const loginGraduate = (username, password)  => {
-  return axios.post("api/auth/graduate/login", {
+  return axios.post("/api/auth/graduate/login", {
       username, password
   }).then(response => {
     return response.data
