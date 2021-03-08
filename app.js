@@ -35,7 +35,7 @@ app.use(
     resave: true,
     store: MongoStore.create({
       // mongooseConnection: mongoose.connection
-      mongoUrl: process.env.MONGODB_URI
+      mongoUrl: 'mongodb://localhost/bootUp'
     })
   })
 )
