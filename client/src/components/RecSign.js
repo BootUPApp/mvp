@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import {signupRecruiter} from '../services/auth';
 
 class RecSign extends React.Component{

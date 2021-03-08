@@ -63,7 +63,7 @@ req.login(user, err => {
 // Recruiter Logged in
 router.get("/recruiter/loggedin", (req,res, next) => {
   res.json(req.user)
-  res.send('Henlo');
+  res.send('Hello');
 })
 
 // Graduate Sign Up / Insomnia Tested X
