@@ -1,6 +1,7 @@
 import React from 'react'
 import {loginRecruiter} from '../services/auth';
 
+
 class RecruiterLogin extends React.Component {
 
   state = {
@@ -38,6 +39,7 @@ class RecruiterLogin extends React.Component {
   }
 
   render(){
+
   return (
     <div>
       <h1>Recruiter Login</h1>

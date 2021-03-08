@@ -4,6 +4,11 @@ import {signupRecruiter} from '../services/auth'
 class RecruiterSignup extends React.Component{
 
   state = {
+    firstName: '',
+    lastName: '',
+    emailAddress: '',
+    companyName: '',
+    profileImage: '',
     username: '',
     password: '',
     message: ''
@@ -18,18 +23,41 @@ class RecruiterSignup extends React.Component{
 
   handleSubmit = event => {
     event.preventDefault();
-    const { username, password } = this.state;
-    signupRecruiter(username, password)
+    const {
+      firstName,
+      lastName,
+      emailAddress,
+      companyName,
+      profileImage,
+      username,
+      password } = this.state;
+    signupRecruiter(
+      firstName,
+      lastName,
+      emailAddress,
+      companyName,
+      profileImage,
+      username,
+      password)
       .then(user => {
         if (user.message) {
           this.setState({
             message: user.message,
+            firstName: '',
+            lastName: '',
+            emailAddress: '',
+            companyName: '',
+            profileImage: '',
             username: '',
             password: ''
           })
         } else {
           // the response from the server is a user object -> signup was successful
           // we want to put the user object in the state of App.js
+          
+          console.log(user);
+          this.setState({message: ''})
+
           console.log(user)
           this.props.setUser(user);
           this.props.history.push("/")
@@ -46,8 +74,8 @@ class RecruiterSignup extends React.Component{
             <input
               type="text"
               name="firstName"
-              // value={state.firstName}
-              // onChange={handleChange}
+              value={this.state.firstName}
+              onChange={this.handleChange}
               id="firstName"
             />
             <br/>
@@ -55,8 +83,8 @@ class RecruiterSignup extends React.Component{
             <input
               type="text"
               name="lastName"
-              // value={this.state.lastName}
-              // onChange={this.handleChange}
+              value={this.state.lastName}
+              onChange={this.handleChange}
               id="lastName"
             />
             <br/>
@@ -64,8 +92,8 @@ class RecruiterSignup extends React.Component{
             <input
               type="text"
               name="emailAddress"
-              // value={this.state.emailAddress}
-              // onChange={this.handleChange}
+              value={this.state.emailAddress}
+              onChange={this.handleChange}
               id="emailAddress"
             />
             <br/>
@@ -73,8 +101,8 @@ class RecruiterSignup extends React.Component{
             <input
               type="text"
               name="companyName"
-              // value={this.state.companyName}
-              // onChange={this.handleChange}
+              value={this.state.companyName}
+              onChange={this.handleChange}
               id="companyName"
             />
             <br/>
@@ -82,8 +110,8 @@ class RecruiterSignup extends React.Component{
             <input
               type="file"
               name="profileImage"
-              // value={this.state.profileImage}
-              // onChange={this.handleChange}
+              value={this.state.profileImage}
+              onChange={this.handleChange}
               id="profileImage"
             />
             <br/>

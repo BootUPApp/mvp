@@ -9,7 +9,7 @@ export default function Home() {
   useEffect (() => {
     axios.get('/api/recruiter')
     .then(response => {
-       console.log('Hi from axios,', response.data[0].firstName)
+       console.log('Hi from axios,', response)
       setState(response.data)
     })
     .catch(error => {
@@ -17,7 +17,7 @@ export default function Home() {
     })
   }, [])
   const displayRecruiters = state.map((recruiter) => {
-        return recruiter.firstName
+        return recruiter.username
        })
        console.log(state)
   return (

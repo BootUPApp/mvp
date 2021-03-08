@@ -1,16 +1,140 @@
 import React from 'react'
+import {signupGraduate} from '../services/auth'
 
-export default function GraduateSignup() {
+class GraduateSignup extends React.Component{
+
+  state = {
+    username: '',
+    password: '',
+    firstName: '',
+    lastName: '',
+    profileImage: '',
+    catchphrase: '',
+    emailAddress: '',
+    bootCampName: '',
+    bootCampCity: '',
+    bootCampGraduation: '',
+    skills: [],
+    industry: '',
+    yearsInIndustry: '',
+    languagesSpoken: [],
+    currentlyLearning: [],
+    myGif: '',
+    githubUsername: '',
+    githubProfile: '',
+    linkedInProfile: '',
+    mediumProfile: '',
+    githubId: '',
+    companyName: '',
+    message: ''
+  }
+
+  handleChange = event => {
+    // console.log(event.target)
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    })
+  }
+
+  handleSubmit = event => {
+    event.preventDefault();
+    const {
+      username,
+      password,
+      firstName,
+      lastName,
+      profileImage,
+      catchphrase,
+      emailAddress,
+      bootCampName,
+      bootCampCity,
+      bootCampGraduation,
+      skill,
+      rating,
+      industry,
+      yearsInIndustry,
+      languagesSpoken,
+      currentlyLearning,
+      myGif,
+      githubUsername,
+      githubProfile,
+      linkedInProfile,
+      mediumProfile,
+      githubId,
+      companyName
+    } = this.state;
+    console.log(this.state)
+    signupGraduate(
+      username,
+      password,
+      firstName,
+      lastName,
+      profileImage,
+      catchphrase,
+      emailAddress,
+      bootCampName,
+      bootCampCity,
+      bootCampGraduation,
+      skill,
+      rating,
+      industry,
+      yearsInIndustry,
+      languagesSpoken,
+      currentlyLearning,
+      myGif,
+      githubUsername,
+      githubProfile,
+      linkedInProfile,
+      mediumProfile,
+      githubId,
+      companyName)
+      .then(user => {
+        if (user.message) {
+          this.setState({
+            message: user.message,
+            username: '',
+            password: '',
+            firstName: '',
+            lastName: '',
+            profileImage: '',
+            catchphrase: '',
+            emailAddress: '',
+            bootCampName: '',
+            bootCampCity: '',
+            bootCampGraduation: '',
+            skills: [],
+            industry: '',
+            yearsInIndustry: '',
+            languagesSpoken: [],
+            currentlyLearning: [],
+            myGif: '',
+            githubUsername: '',
+            githubProfile: '',
+            linkedInProfile: '',
+            mediumProfile: '',
+            githubId: '',
+            companyName: '',
+          })
+        } else {
+          // the response from the server is a user object -> signup was successful
+          // we want to put the user object in the state of App.js
+          console.log(user);
+          this.setState({message: ''})
+        }
+      })
+  }
+  render() {
   return (
     <div>
       <h1>Graduate Signup</h1>
-      <form >
+      <form onSubmit={this.handleSubmit}>
           <label htmlFor="firstName">First name: </label>
           <input
             type="text"
             name="firstName"
-            // value={this.state.firstName}
-            // onChange={this.handleChange}
+            value={this.state.firstName}
+            onChange={this.handleChange}
             id="firstName"
           />
           <br/>
@@ -18,8 +142,8 @@ export default function GraduateSignup() {
           <input
             type="text"
             name="lastName"
-            // value={this.state.lastName}
-            // onChange={this.handleChange}
+            value={this.state.lastName}
+            onChange={this.handleChange}
             id="lastName"
           />
           <br/>
@@ -27,16 +151,16 @@ export default function GraduateSignup() {
           <input
             type="text"
             name="userName"
-            // value={this.state.userName}
-            // onChange={this.handleChange}
+            value={this.state.userName}
+            onChange={this.handleChange}
             id="userName"
           /><br/>
           <label htmlFor="emailAddress">Email address: </label>
           <input
             type="text"
             name="emailAddress"
-            // value={this.state.emailAddress}
-            // onChange={this.handleChange}
+            value={this.state.emailAddress}
+            onChange={this.handleChange}
             id="emailAddress"
           />
           <br/>
@@ -44,8 +168,8 @@ export default function GraduateSignup() {
           <input
             type="file"
             name="profileImage"
-            // value={this.state.profileImage}
-            // onChange={this.handleChange}
+            value={this.state.profileImage}
+            onChange={this.handleChange}
             id="profileImage"
           />
           <br/>
@@ -53,8 +177,8 @@ export default function GraduateSignup() {
           <input
             type="password"
             name="password"
-            // value={this.state.password}
-            // onChange={this.handleChange}
+            value={this.state.password}
+            onChange={this.handleChange}
             id="password"
           />
           <br/>
@@ -62,8 +186,8 @@ export default function GraduateSignup() {
           <input
             type="text"
             name="catchphrase"
-            // value={this.state.catchphrase}
-            // onChange={this.handleChange}
+            value={this.state.catchphrase}
+            onChange={this.handleChange}
             id="catchphrase"
           />
           <br/>
@@ -71,8 +195,8 @@ export default function GraduateSignup() {
           <input
             type="text"
             name="bootCampName"
-            // value={this.state.bootCampName}
-            // onChange={this.handleChange}
+            value={this.state.bootCampName}
+            onChange={this.handleChange}
             id="bootCampName"
           />
           <br/>
@@ -80,8 +204,8 @@ export default function GraduateSignup() {
           <input
             type="text"
             name="bootCampCity"
-            // value={this.state.bootCampCity}
-            // onChange={this.handleChange}
+            value={this.state.bootCampCity}
+            onChange={this.handleChange}
             id="bootCampCity"
           />
           <br/>
@@ -89,18 +213,18 @@ export default function GraduateSignup() {
           <input
             type="date"
             name="bootCampGraduation"
-            // value={this.state.bootCampGraduation}
-            // onChange={this.handleChange}
+            value={this.state.bootCampGraduation}
+            onChange={this.handleChange}
             id="bootCampGraduation"
           />
           <br/>
-          <label htmlFor="skills">Skill: </label>
+          <label htmlFor="skill">Skill: </label>
           <input
             type="text"
-            name="skills"
-            // value={this.state.skills}
-            // onChange={this.handleChange}
-            id="skills"
+            name="skill"
+            value={this.state.skills}
+            onChange={this.handleChange}
+            id="skill"
           />
           <br/>
           <label htmlFor="rating">Rating: </label>
@@ -118,8 +242,8 @@ export default function GraduateSignup() {
           <input
             type="text"
             name="currentlyLearning"
-            // value={this.state.currentlyLearning}
-            // onChange={this.handleChange}
+            value={this.state.currentlyLearning}
+            onChange={this.handleChange}
             id="currentlyLearning"
           />
           <br/>
@@ -127,8 +251,8 @@ export default function GraduateSignup() {
           <input
             type="text"
             name="industry"
-            // value={this.state.industry}
-            // onChange={this.handleChange}
+            value={this.state.industry}
+            onChange={this.handleChange}
             id="industry"
           />
           <br/>
@@ -136,8 +260,8 @@ export default function GraduateSignup() {
           <input
             type="number"
             name="yearsInIndustry"
-            // value={this.state.yearsInIndustry}
-            // onChange={this.handleChange}
+            value={this.state.yearsInIndustry}
+            onChange={this.handleChange}
             id="yearsInIndustry"
           />
           <br/>
@@ -145,8 +269,8 @@ export default function GraduateSignup() {
           <input
             type="text"
             name="languagesSpoken"
-            // value={this.state.languagesSpoken}
-            // onChange={this.handleChange}
+            value={this.state.languagesSpoken}
+            onChange={this.handleChange}
             id="languagesSpoken"
           />
           <br/>
@@ -154,8 +278,8 @@ export default function GraduateSignup() {
           <input
             type="text"
             name="myGif"
-            // value={this.state.myGif}
-            // onChange={this.handleChange}
+            value={this.state.myGif}
+            onChange={this.handleChange}
             id="myGif"
           />
           <br/>
@@ -163,8 +287,8 @@ export default function GraduateSignup() {
           <input
             type="text"
             name="githubUsername"
-            // value={this.state.githubUsername}
-            // onChange={this.handleChange}
+            value={this.state.githubUsername}
+            onChange={this.handleChange}
             id="githubUsername"
           />
           <br/>
@@ -172,8 +296,8 @@ export default function GraduateSignup() {
           <input
             type="text"
             name="githubProfile"
-            // value={this.state.githubProfile}
-            // onChange={this.handleChange}
+            value={this.state.githubProfile}
+            onChange={this.handleChange}
             id="githubProfile"
           />
           <br/>
@@ -181,8 +305,8 @@ export default function GraduateSignup() {
           <input
             type="text"
             name="linkedInProfile"
-            // value={this.state.linkedInProfile}
-            // onChange={this.handleChange}
+            value={this.state.linkedInProfile}
+            onChange={this.handleChange}
             id="linkedInProfile"
           />
           <br/>
@@ -190,8 +314,8 @@ export default function GraduateSignup() {
           <input
             type="text"
             name="mediumProfile"
-            // value={this.state.mediumProfile}
-            // onChange={this.handleChange}
+            value={this.state.mediumProfile}
+            onChange={this.handleChange}
             id="mediumProfile"
           />
           <br/>
@@ -200,3 +324,6 @@ export default function GraduateSignup() {
     </div>
   )
 }
+}
+
+export default GraduateSignup;

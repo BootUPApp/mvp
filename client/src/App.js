@@ -5,7 +5,6 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 
 import RecSign from './components/RecSign';
-import axios from 'axios';
 
 import Recruiter from './components/Recruiter';
 import Graduate from './components/Graduate';
@@ -29,6 +28,7 @@ setUser = user => {
 }
 
   render(){
+
   return (
     <div>
     <Navbar/>
