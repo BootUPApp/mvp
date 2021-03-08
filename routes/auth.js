@@ -10,13 +10,6 @@ const { uploader, cloudinary } = require("../config/cloudinary");
 
 router.post("/recruiter/signup", uploader.single('photo'), (req,res,next) => {
   const {
-      firstName,
-      lastName,
-      emailAddress,
-      companyName,
-      imgPath,
-      imgName,
-      publicId,
       username,
       password
     } = req.body;
@@ -38,12 +31,12 @@ router.post("/recruiter/signup", uploader.single('photo'), (req,res,next) => {
     User.create({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
-
       username: username,
       password: hash,
-      imgPath: req.file.path,
-      imgName:req.file.originalname,
-      publicId: req.file.filename,
+      role: 'Recruiter',
+      // imgPath: req.file.path,
+      // imgName:req.file.originalname,
+      // publicId: req.file.filename,
 
       emailAddress: req.body.emailAddress,
       companyName: req.body.companyName,
@@ -98,19 +91,20 @@ router.post("/graduate/signup", uploader.single('photo'), (req,res,next) => {
           const salt = bcrypt.genSaltSync();
           const hash = bcrypt.hashSync(password, salt);
       
-          const {firstName, lastName, catchphrase,bootCampGraduation,emailAddress, bootCampName, bootCampCity, industry, yearsInIndustry, languagesSpoken,currentlyLearning, myGif, githubUsername, githubProfile,linkedInProfile, mediumProfile} = req.body
+          const {firstName,lastName, catchphrase,bootCampGraduation,emailAddress, bootCampName, bootCampCity, industry, yearsInIndustry, languagesSpoken,currentlyLearning, myGif, githubUsername, githubProfile,linkedInProfile, mediumProfile} = req.body
 
           User.create({
             firstName,
             lastName, 
-            username: username, 
-            imgPath: req.file.path,
-             imgName:req.file.originalname,
-             publicId: req.file.filename,
+            username: username,
+            password: hash, 
+            role: 'Graduate',
+            // imgPath: req.file.path,
+            // imgName:req.file.originalname,
+            // publicId: req.file.filename,
             catchphrase,
             bootCampGraduation,
             emailAddress, 
-            password: hash, 
             bootCampName, 
             bootCampCity, 
             skills:[{ skill: req.body.skill, rating: req.body.rating}],

@@ -8,13 +8,14 @@ class GraduateSignup extends React.Component{
     password: '',
     firstName: '',
     lastName: '',
-    profileImage: '',
+    // profileImage: '',
     catchphrase: '',
     emailAddress: '',
     bootCampName: '',
     bootCampCity: '',
     bootCampGraduation: '',
-    skills: [],
+    skill: '',
+    rating: '',
     industry: '',
     yearsInIndustry: '',
     languagesSpoken: [],
@@ -44,7 +45,7 @@ class GraduateSignup extends React.Component{
       password,
       firstName,
       lastName,
-      profileImage,
+      // profileImage,
       catchphrase,
       emailAddress,
       bootCampName,
@@ -70,7 +71,7 @@ class GraduateSignup extends React.Component{
       password,
       firstName,
       lastName,
-      profileImage,
+      // profileImage,
       catchphrase,
       emailAddress,
       bootCampName,
@@ -88,33 +89,34 @@ class GraduateSignup extends React.Component{
       linkedInProfile,
       mediumProfile,
       githubId,
-      companyName)
+      companyName
+      )
       .then(user => {
         if (user.message) {
           this.setState({
             message: user.message,
             username: '',
             password: '',
-            firstName: '',
-            lastName: '',
-            profileImage: '',
-            catchphrase: '',
-            emailAddress: '',
-            bootCampName: '',
-            bootCampCity: '',
-            bootCampGraduation: '',
-            skills: [],
-            industry: '',
-            yearsInIndustry: '',
-            languagesSpoken: [],
-            currentlyLearning: [],
-            myGif: '',
-            githubUsername: '',
-            githubProfile: '',
-            linkedInProfile: '',
-            mediumProfile: '',
-            githubId: '',
-            companyName: '',
+            // firstName: '',
+            // lastName: '',
+            // profileImage: '',
+            // catchphrase: '',
+            // emailAddress: '',
+            // bootCampName: '',
+            // bootCampCity: '',
+            // bootCampGraduation: '',
+            // skills: [],
+            // industry: '',
+            // yearsInIndustry: '',
+            // languagesSpoken: [],
+            // currentlyLearning: [],
+            // myGif: '',
+            // githubUsername: '',
+            // githubProfile: '',
+            // linkedInProfile: '',
+            // mediumProfile: '',
+            // githubId: '',
+            // companyName: '',
           })
         } else {
           // the response from the server is a user object -> signup was successful
@@ -147,13 +149,13 @@ class GraduateSignup extends React.Component{
             id="lastName"
           />
           <br/>
-          <label htmlFor="userName">Username: </label>
+          <label htmlFor="username">Username: </label>
           <input
             type="text"
-            name="userName"
-            value={this.state.userName}
+            name="username"
+            value={this.state.username}
             onChange={this.handleChange}
-            id="userName"
+            id="username"
           /><br/>
           <label htmlFor="emailAddress">Email address: </label>
           <input
@@ -320,6 +322,9 @@ class GraduateSignup extends React.Component{
           />
           <br/>
           <button type="submit">Sign Up</button>
+          {this.state.message && (
+            <h3>{this.state.message}</h3>
+          )}
       </form>
     </div>
   )
