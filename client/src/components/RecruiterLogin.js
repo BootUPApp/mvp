@@ -1,14 +1,17 @@
 import React from 'react'
 import {loginRecruiter} from '../services/auth';
-
+import service from '../api/service';
 
 class RecruiterLogin extends React.Component {
 
   state = {
     username: '',
     password: '',
-    message: ''
+    message: '',
+    imgPath: '',
   }
+
+
 
   handleChange = event => {
     const { name, value } = event.target;
@@ -19,8 +22,8 @@ class RecruiterLogin extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { username, password } = this.state;
-    loginRecruiter(username, password)
+    const { username, password,imgPath } = this.state;
+    loginRecruiter(username, password,imgPath)
       .then(user => {
         if (user.message) {
           this.setState({

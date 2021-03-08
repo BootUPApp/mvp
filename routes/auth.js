@@ -8,18 +8,8 @@ const { uploader, cloudinary } = require("../config/cloudinary");
 
 // Recruiter Sign Up / Insomnia Tested X
 
-router.post("/recruiter/signup", uploader.single('photo'), (req,res,next) => {
-  const {
-      firstName,
-      lastName,
-      emailAddress,
-      companyName,
-      imgPath,
-      imgName,
-      publicId,
-      username,
-      password
-    } = req.body;
+router.post("/recruiter/signup", uploader.single('imgPath'), (req,res,next) => {
+  const {username,password} = req.body;
 
   if(password.length < 8){
       return res.status(400).json({ message: 'Your password must be 8 chars minimum' });
@@ -36,17 +26,9 @@ router.post("/recruiter/signup", uploader.single('photo'), (req,res,next) => {
           const hash = bcrypt.hashSync(password, salt);
       
     User.create({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-
       username: username,
       password: hash,
-      imgPath: req.file.path,
-      imgName:req.file.originalname,
-      publicId: req.file.filename,
-
-      emailAddress: req.body.emailAddress,
-      companyName: req.body.companyName,
+      imagePath: req.body.imagePath,
     }).then(recruiterToDB => {
       res.status(201).json(recruiterToDB)
     }).catch(error => {

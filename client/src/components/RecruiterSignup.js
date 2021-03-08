@@ -1,18 +1,39 @@
 import React from 'react';
 import {signupRecruiter} from '../services/auth'
+import service from '../api/service';
 
 class RecruiterSignup extends React.Component{
 
   state = {
-    firstName: '',
-    lastName: '',
-    emailAddress: '',
-    companyName: '',
-    profileImage: '',
+    imgPath: '',
     username: '',
     password: '',
     message: ''
   }
+
+
+  handleImageUpload = () => {
+
+    const { files } = document.querySelector('input[type="file"]')
+    const formData = new FormData();
+    formData.append('file', files[0]);
+    // replace this with your upload preset name
+    formData.append('imgPath', 'qv5rfbwg');
+    const options = {
+      method: 'POST',
+      body: formData,
+    };
+    
+    // replace cloudname with your Cloudinary cloud_name
+    return fetch('https://api.Cloudinary.com/v1_1/detiwkwhu/image/upload', options)
+      .then(res => res.json())
+      .then(res => {
+        this.setState({
+          imgPath: res.secure_url,
+        })
+      })
+      .catch(err => console.log(err));
+  };
 
   handleChange = event => {
     const { name, value } = event.target;
@@ -24,30 +45,17 @@ class RecruiterSignup extends React.Component{
   handleSubmit = event => {
     event.preventDefault();
     const {
-      firstName,
-      lastName,
-      emailAddress,
-      companyName,
-      profileImage,
       username,
-      password } = this.state;
+      password, imgPath } = this.state;
     signupRecruiter(
-      firstName,
-      lastName,
-      emailAddress,
-      companyName,
-      profileImage,
       username,
-      password)
+      password,
+      imgPath)
       .then(user => {
         if (user.message) {
           this.setState({
             message: user.message,
-            firstName: '',
-            lastName: '',
-            emailAddress: '',
-            companyName: '',
-            profileImage: '',
+            imgPath: '',
             username: '',
             password: ''
           })
@@ -69,51 +77,15 @@ class RecruiterSignup extends React.Component{
     return (
       <div>
         <h1>Recruiter Signup</h1>
+      
         <form onSubmit={this.handleSubmit}>
-            <label htmlFor="firstName">First name: </label>
-            <input
-              type="text"
-              name="firstName"
-              value={this.state.firstName}
-              onChange={this.handleChange}
-              id="firstName"
-            />
-            <br/>
-            <label htmlFor="lastName">Last name: </label>
-            <input
-              type="text"
-              name="lastName"
-              value={this.state.lastName}
-              onChange={this.handleChange}
-              id="lastName"
-            />
-            <br/>
-            <label htmlFor="emailAddress">Email address: </label>
-            <input
-              type="text"
-              name="emailAddress"
-              value={this.state.emailAddress}
-              onChange={this.handleChange}
-              id="emailAddress"
-            />
-            <br/>
-            <label htmlFor="companyName">Company name: </label>
-            <input
-              type="text"
-              name="companyName"
-              value={this.state.companyName}
-              onChange={this.handleChange}
-              id="companyName"
-            />
-            <br/>
-            <label htmlFor="profileImage">Profile image: </label>
-            <input
-              type="file"
-              name="profileImage"
-              value={this.state.profileImage}
-              onChange={this.handleChange}
-              id="profileImage"
-            />
+        <label htmlFor="imgPath">Image: </label>
+          <input
+            type="file"
+            id="imgPath"
+            name="imgPath"
+            onChange={this.handleFileUpload}
+          />
             <br/>
             <label htmlFor="username">Username: </label>
             <input
