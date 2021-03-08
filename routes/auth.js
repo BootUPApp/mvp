@@ -3,19 +3,24 @@ const router = require("express").Router()
 const User = require("../models/User.model");
 const bcrypt = require('bcrypt');
 const passport = require('passport');
+const { uploader, cloudinary } = require("../config/cloudinary");
 
 
 // Recruiter Sign Up / Insomnia Tested X
-router.post("/recruiter/signup", (req,res,next) => {
+
+router.post("/recruiter/signup", uploader.single('photo'), (req,res,next) => {
   const {
       firstName,
       lastName,
       emailAddress,
       companyName,
-      profileImage,
+      imgPath,
+      imgName,
+      publicId,
       username,
       password
     } = req.body;
+
   if(password.length < 8){
       return res.status(400).json({ message: 'Your password must be 8 chars minimum' });
     } 
@@ -33,9 +38,13 @@ router.post("/recruiter/signup", (req,res,next) => {
     User.create({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
+
       username: username,
       password: hash,
-      profileImage: req.body.profileImage, // Attention needs to be req.file due to multer/Cloudniary
+      imgPath: req.file.path,
+      imgName:req.file.originalname,
+      publicId: req.file.filename,
+
       emailAddress: req.body.emailAddress,
       companyName: req.body.companyName,
     }).then(recruiterToDB => {
@@ -73,7 +82,7 @@ router.get("/recruiter/loggedin", (req,res, next) => {
 })
 
 // Graduate Sign Up / Insomnia Tested X
-router.post("/graduate/signup", (req,res,next) => {
+router.post("/graduate/signup", uploader.single('photo'), (req,res,next) => {
   const {username, password } = req.body;
   if(password.length < 8){
       return res.status(400).json({ message: 'Your password must be 8 chars minimum' });
@@ -89,13 +98,15 @@ router.post("/graduate/signup", (req,res,next) => {
           const salt = bcrypt.genSaltSync();
           const hash = bcrypt.hashSync(password, salt);
       
-          const {firstName, lastName, profileImage, catchphrase,bootCampGraduation,emailAddress, bootCampName, bootCampCity, industry, yearsInIndustry, languagesSpoken,currentlyLearning, myGif, githubUsername, githubProfile,linkedInProfile, mediumProfile} = req.body
+          const {firstName, lastName, catchphrase,bootCampGraduation,emailAddress, bootCampName, bootCampCity, industry, yearsInIndustry, languagesSpoken,currentlyLearning, myGif, githubUsername, githubProfile,linkedInProfile, mediumProfile} = req.body
 
           User.create({
             firstName,
             lastName, 
             username: username, 
-            profileImage,  // **! BE Mindful Imagefile probably needs to be a req.file
+            imgPath: req.file.path,
+             imgName:req.file.originalname,
+             publicId: req.file.filename,
             catchphrase,
             bootCampGraduation,
             emailAddress, 

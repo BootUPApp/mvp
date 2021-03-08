@@ -10,7 +10,8 @@ const userSchema = new Schema({
     lastName: {
         type: String,
         lowercase: true},
-    profileImage: String,
+   imgPath: String,
+    publicId: String,
     catchphrase: String,
     emailAddress: {
         type: String,
