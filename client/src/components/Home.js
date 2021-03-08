@@ -1,12 +1,11 @@
 import { React, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
 import axios from 'axios';
 
-export default function Home() {
 
-  const [state, setState] = useState([])
-  // console.log(state)
+
+class Home extends React.Component {
+
 
   useEffect (() => {
     axios.get('/api/recruiter')
@@ -35,5 +34,7 @@ export default function Home() {
       <Link to={'/graduate'}>Graduate signup/login</Link>
     </div>
   )
+
 }
 
+export default Home;
