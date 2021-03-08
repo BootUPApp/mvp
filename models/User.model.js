@@ -2,24 +2,21 @@ const { Schema, model } = require("mongoose");
 
 // TODO: Please make sure you edit the user model to whatever makes sense in this case
 const userSchema = new Schema({
+    username: String,
+    password: String,
+    /*
   firstName: {
     type: String,
     lowercase: true},
 lastName: {
     type: String,
     lowercase: true},
-username: {
-      type: String,
-      unique: true
-    },
 profileImage: String,
 catchphrase: String,
 emailAddress: {
     type: String,
     lowercase: true},
-password: {
-      type: String,
-      min: 6},
+password: String,
 bootCampName: {
     type: String,
     lowercase: true},
@@ -44,6 +41,7 @@ linkedInProfile: String,
 mediumProfile: String,
 githubId: String,
 companyName: String,
+*/
 });
 
 const User = model("User", userSchema);

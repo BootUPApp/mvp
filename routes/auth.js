@@ -1,119 +1,153 @@
+// Set Up
 const router = require("express").Router()
-const passport = require("passport");
-const User = require("../models/user.model");
+const User = require("../models/User.model");
+const bcrypt = require('bcrypt');
+const passport = require('passport');
 
-// Recruiter Sign Up
 
-router.post('/recruiter/signup', (req,res, next) => {
-  const { username, password } = req.body;
-  if (password.length < 8) {
-    return res.status(400).json({ message: 'Your password must be 8 chars minimum' });
-  }
-  if (username === '') {
-    return res.status(400).json({ message: 'Your username cannot be empty' });
-  }
-
-  // check if username exists in database -> show message
-  User.findOne({ username: username })
-    .then(found => {
-      if (found !== null) {
-        return res.status(400).json({ message: 'Your username is already taken' });
-      } else {
-        // hash the password, create the user and send the user to the client
-        const salt = bcrypt.genSaltSync();
-        const hash = bcrypt.hashSync(password, salt);
-
-        User.create({
-          username: username,
-          password: hash
-        })
-          .then(dbUser => {
-            // login with passport:
-            req.login(dbUser, err => {
-              if (err) {
-                return res.status(500).json({ message: 'Error while attempting to login' })
-              }
-              // we don't redirect to an html page anymore, we just send the user obj to the client
-              return res.status(200).json(dbUser);
-            });
-          })
-          .catch(err => {
-            res.json(err);
-          })
-      }
-    })
-})
-
-// Recruiter Login
-router.post('/recruiter/login', (req,res,next) => {
-  passport.authenticate('local', (error, user) => {
-    if(error) {
-      return res.status(500).json({ message: 'Error while attempting to login' })
+// Recruiter Sign Up / Insomnia Tested X
+router.post("/recruiter/signup", (req,res,next) => {
+  const {username, password } = req.body;
+  if(password.length < 8){
+      return res.status(400).json({ message: 'Your password must be 8 chars minimum' });
+    } 
+    if(username === ""){
+      return res.status(400).json({ message: 'Your username cannot be empty' });
     }
-    if(!user) {
-      return res.status(400).json({ message: 'wrong credenitals' })
+    
+    User.findOne({username:username}).then(usernameDetected =>{
+        if(usernameDetected !== null){
+          return res.status(400).json({ message: 'Your username is already taken' });
+        } else {
+          const salt = bcrypt.genSaltSync();
+          const hash = bcrypt.hashSync(password, salt);
+      
+    User.create({
+      username: username,
+      password: hash,
+      /*
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      profileImage: req.body.profileImage, // Attention needs to be req.file due to multer/Cloudniary
+      emailAddress: req.body.emailAddress,
+      companyName: req.body.companyName,
+      */
+    }).then(recruiterToDB => {
+      res.status(201).json(recruiterToDB)
+    }).catch(error => {
+      next(error)
+     })
     }
-    req.login((user,error) => {
-      if(error){
-        return res.status(500).json({ message: 'Error while attempting to login' })
-      } else {
-        return res.status(200).json(user);
-      }
-    })
   })
 })
 
-// Recruiter LogOut
-router.delete('/recruiter/logout', (req,res,next) => {
+// Recruiter Log In
+router.post("/recruiter/login", (req,res,next) => {
+  passport.authenticate('local', (err, user) => {
+    if(err){
+      return res.status(500).json({message: 'Error while attemting to login'})
+    }
+if(!user){
+  return res.status(400).json({message: 'Wrong credentials'})
+}
+req.login(user, err => {
+  if(err){
+    return res.status(500).json({message: 'Error while attemting to login'})
+  } else {
+    return res.status(200).json(user);
+  }
+})
+  })(req, res)
+})
+
+// Recruiter Logged in
+router.get("/recruiter/loggedin", (req,res, next) => {
+  res.json(req.user)
+  res.send('Henlo');
+})
+
+// Graduate Sign Up / Insomnia Tested X
+router.post("/graduate/signup", (req,res,next) => {
+  const {username, password } = req.body;
+  if(password.length < 8){
+      return res.status(400).json({ message: 'Your password must be 8 chars minimum' });
+    } 
+    if(username === ""){
+      return res.status(400).json({ message: 'Your username cannot be empty' });
+    }
+    
+    User.findOne({username:username}).then(usernameDetected =>{
+        if(usernameDetected !== null){
+          return res.status(400).json({ message: 'Your username is already taken' });
+        } else {
+          const salt = bcrypt.genSaltSync();
+          const hash = bcrypt.hashSync(password, salt);
+      
+          const {firstName, lastName, profileImage, catchphrase,bootCampGraduation,emailAddress, bootCampName, bootCampCity, industry, yearsInIndustry, languagesSpoken,currentlyLearning, myGif, githubUsername, githubProfile,linkedInProfile, mediumProfile} = req.body
+
+          User.create({
+            firstName,
+            lastName, 
+            username: username, 
+            profileImage,  // **! BE Mindful Imagefile probably needs to be a req.file
+            catchphrase,
+            bootCampGraduation,
+            emailAddress, 
+            password: hash, 
+            bootCampName, 
+            bootCampCity, 
+            skills:[{ skill: req.body.skill, rating: req.body.rating}],
+            industry, 
+            yearsInIndustry, 
+            languagesSpoken,
+            currentlyLearning, 
+            myGif, 
+            githubUsername, 
+            githubProfile,
+            linkedInProfile, 
+            mediumProfile, 
+          }).then(sendGradToDB => {
+            res.status(201).json(sendGradToDB)
+          }).catch(error => {
+            next(error);
+          })
+    }
+  })
+})
+
+// Graduate Log In
+router.post("/graduate/login", (req,res,next) => {
+  passport.authenticate('local', (err, user) => {
+    if(err){
+      return res.status(500).json({message: 'Error while attemting to login'})
+    }
+if(!user){
+  return res.status(400).json({message: 'Wrong credentials'})
+}
+req.login(user, err => {
+  if(err){
+    return res.status(500).json({message: 'Error while attemting to login'})
+  } else {
+    return res.status(200).json(user);
+  }
+})
+  })(req, res)
+})
+
+// Recruiter Logged in
+router.get("/graduate/loggedin", (req,res, next) => {
+  res.json(req.user)
+})
+
+
+
+// Universal Logout
+router.delete('/logout', (req,res) => {
   req.logout();
-  res.status(200).json({message: 'Logout Sucessful' })
-})
-
-// Recruiter Loggedin
-router.get("/recruiter/loggedin", (req,res,next) => {
-  res.json(req.user);
+  res.status(200).json({
+      message: "Logout successfull"
+  })
 })
 
 
-// Graduate SignUp
-
-router.post('/graduate/signup', (req,res, next) => {
-  const { username, password } = req.body;
-  if (password.length < 8) {
-    return res.status(400).json({ message: 'Your password must be 8 chars minimum' });
-  }
-  if (username === '') {
-    return res.status(400).json({ message: 'Your username cannot be empty' });
-  }
-  // check if username exists in database -> show message
-  User.findOne({ username: username })
-    .then(found => {
-      if (found !== null) {
-        return res.status(400).json({ message: 'Your username is already taken' });
-      } else {
-        // hash the password, create the user and send the user to the client
-        const salt = bcrypt.genSaltSync();
-        const hash = bcrypt.hashSync(password, salt);
-
-        User.create({
-          username: username,
-          password: hash
-        })
-          .then(dbUser => {
-            // login with passport:
-            req.login(dbUser, err => {
-              if (err) {
-                return res.status(500).json({ message: 'Error while attempting to login' })
-              }
-              // we don't redirect to an html page anymore, we just send the user obj to the client
-              return res.status(200).json(dbUser);
-            });
-          })
-          .catch(err => {
-            res.json(err);
-          })
-      }
-    })
-})
-
-
+module.exports = router;

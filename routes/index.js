@@ -19,24 +19,8 @@ router.get("/recruiter/:id", (req,res, next) => {
   })
 })
 
-// POST Recruiter / Insomnia Test x
-router.post("/recruiter/signup", (req, res, next) => {
-  User.create({
-     firstName: req.body.firstName,
-     lastName: req.body.lastName,
-     profileImage: req.body.profileImage, // Attention needs to be req.file due to multer/Cloudniary
-     emailAddress: req.body.emailAddress,
-     companyName: req.body.companyName,
-     username: req.body.username,
-     password: req.body.password,
-     // challenges: //
-     // inbox:
-  }).then(recruiterToDB => {
-      res.status(201).json(recruiterToDB)
-  }).catch(error => {
-    next(error);
-  })
-});
+// POST Recruiter
+// Inside "./routes/auth.js"
 
 // PUT Recruiter  - Update Profile / Insomnia Test x
 router.put("/recruiter/:id", (req,res,next) => {
@@ -88,6 +72,7 @@ router.get("/graduates/:id", (req,res,next) => {
 })
 
 // POST Graduate / Insomnia Test X
+/*
 router.post("/graduate/signup", (req,res,next) => {
   const {firstName, lastName, username, profileImage, catchphrase,bootCampGraduation,emailAddress, password, bootCampName, bootCampCity, industry, yearsInIndustry, languagesSpoken,currentlyLearning, myGif, githubUsername, githubProfile,linkedInProfile, mediumProfile} = req.body;  // **! BE Mindful Imagefile probably needs to be a req.file
   User.create({
@@ -117,6 +102,7 @@ router.post("/graduate/signup", (req,res,next) => {
     next(error);
   })
 })
+*/
 
 // PUT Graduate / Insomnia Test X
 router.put("/graduates/:id", (req, res, next) => {
