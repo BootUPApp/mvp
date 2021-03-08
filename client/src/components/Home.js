@@ -1,13 +1,13 @@
 import { React, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
 import axios from 'axios';
+
 export default function Home() {
   const [state, setState] = useState([])
   // console.log(state)
 
   useEffect (() => {
-    axios.get('/api/recruiter')
+    axios.get('/api/recruiters')
     .then(response => {
        console.log('Hi from axios,', response)
       setState(response.data)
@@ -28,8 +28,6 @@ export default function Home() {
       <Link to={'/recruiter'}>Recruiter signup/login</Link>
       <br />
       <Link to={'/graduate'}>Graduate signup/login</Link>
-      <br />
-      <Link to={'/rec'}>TEST</Link>
     </div>
   )
 }
