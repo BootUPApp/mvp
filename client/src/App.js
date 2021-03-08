@@ -5,7 +5,6 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 
 import RecSign from './components/RecSign';
-import axios from 'axios';
 
 import Recruiter from './components/Recruiter';
 import Graduate from './components/Graduate';
@@ -18,7 +17,7 @@ import RecruiterSignup from './components/RecruiterSignup'
 class App extends React.Component {
   
 state = {
-  recUser: '',
+  signedIn: '',
 }
 
 componentDidMount(){
@@ -32,7 +31,7 @@ getData = () => {
 }
 
   render(){
-    console.log(this.state.recUser);
+    // console.log(this.state.recUser);
   return (
     <div>
     <Navbar/>

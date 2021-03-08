@@ -1,11 +1,21 @@
 import axios from 'axios';
 
-
-
-
-const signupRecruiter = (username, password)  => {
+const signupRecruiter = (
+      firstName,
+      lastName,
+      emailAddress,
+      companyName,
+      profileImage,
+      username,
+      password)  => {
   return axios.post('/api/auth/recruiter/signup', {
-      username, password
+      firstName,
+      lastName,
+      emailAddress,
+      companyName,
+      profileImage,
+      username,
+      password
   }).then(response => {
     return response.data
   }).catch(error => {
