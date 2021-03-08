@@ -4,14 +4,15 @@ const { Schema, model } = require("mongoose");
 const userSchema = new Schema({
     username: String,
     password: String,
-    /*
+
   firstName: {
     type: String,
     lowercase: true},
 lastName: {
     type: String,
     lowercase: true},
-profileImage: String,
+imgPath: String,
+publicId: String,
 catchphrase: String,
 emailAddress: {
     type: String,
@@ -41,7 +42,7 @@ linkedInProfile: String,
 mediumProfile: String,
 githubId: String,
 companyName: String,
-*/
+
 });
 
 const User = model("User", userSchema);

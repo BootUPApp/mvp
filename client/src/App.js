@@ -18,21 +18,17 @@ import RecruiterSignup from './components/RecruiterSignup'
 class App extends React.Component {
   
 state = {
-  recUser: '',
+  user: this.props.user,
 }
 
-componentDidMount(){
-  this.getData();
-}
-
-getData = () => {
+// Sets the user via the parameter
+setUser = user => {
   this.setState({
-    recUser: this.props.user
+    user: user
   })
 }
 
   render(){
-    console.log(this.state.recUser);
   return (
     <div>
     <Navbar/>
@@ -45,8 +41,8 @@ getData = () => {
         <Route exact path='/graduate' component={Graduate} />
         <Route exact path='/graduate/login' component={GraduateLogin} />
         <Route exact path='/graduate/signup' component={GraduateSignup} />
-        <Route exact path='/recruiter/login' component={RecruiterLogin} />
-        <Route exact path='/recruiter/signup' component={RecruiterSignup} />
+        <Route exact path='/recruiter/login'   render={props => <RecruiterLogin setUser={this.setUser} {...props} />} />
+        <Route exact path='/recruiter/signup' /*component={RecruiterSignup} */ render={props => <RecruiterSignup setUser={this.setUser} {...props} />} />
 
       </Switch> 
     </div>

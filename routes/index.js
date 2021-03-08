@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const User = require("../models/User.model")
+const { uploader, cloudinary } = require("../config/cloudinary");
 
 // GET Recruiter / Insomnia Test x
 router.get("/recruiter", (req,res, next) => {
@@ -27,7 +28,9 @@ router.put("/recruiter/:id", (req,res,next) => {
   User.findByIdAndUpdate(req.params.id, {
     firstName: req.body.firstName,
     secondName: req.body.secondName,
-    profileImage: req.body.profileImage, // Attention needs to be req.file due to multer/Cloudniary
+    imgPath: req.file.path,
+    imgName:req.file.originalname,
+    publicId: req.file.filename,
     emailAddress: req.body.emailAddress,
     companyName: req.body.companyName, 
     username: req.body.username
@@ -72,14 +75,16 @@ router.get("/graduates/:id", (req,res,next) => {
 })
 
 // POST Graduate / Insomnia Test X
-/*
-router.post("/graduate/signup", (req,res,next) => {
-  const {firstName, lastName, username, profileImage, catchphrase,bootCampGraduation,emailAddress, password, bootCampName, bootCampCity, industry, yearsInIndustry, languagesSpoken,currentlyLearning, myGif, githubUsername, githubProfile,linkedInProfile, mediumProfile} = req.body;  // **! BE Mindful Imagefile probably needs to be a req.file
+
+router.post("/graduate/signup", uploader.single('photo'), (req,res,next) => {
+  const {firstName, lastName, username, catchphrase,bootCampGraduation,emailAddress, password, bootCampName, bootCampCity, industry, yearsInIndustry, languagesSpoken,currentlyLearning, myGif, githubUsername, githubProfile,linkedInProfile, mediumProfile} = req.body;  // **! BE Mindful Imagefile probably needs to be a req.file
   User.create({
     firstName,
     lastName, 
     username, 
-    profileImage,  // **! BE Mindful Imagefile probably needs to be a req.file
+   imgPath: req.file.path,
+    imgName:req.file.originalname,
+    publicId: req.file.filename,
     catchphrase,
     bootCampGraduation,
     emailAddress, 
@@ -102,16 +107,18 @@ router.post("/graduate/signup", (req,res,next) => {
     next(error);
   })
 })
-*/
+
 
 // PUT Graduate / Insomnia Test X
-router.put("/graduates/:id", (req, res, next) => {
-  const {firstName, lastName, username, profileImage, catchphrase,bootCampGraduation,emailAddress, password, bootCampName, bootCampCity, industry, yearsInIndustry, languagesSpoken,currentlyLearning, myGif, githubUsername, githubProfile,linkedInProfile, mediumProfile} = req.body;  // **! BE Mindful Imagefile probably needs to be a req.file
+router.put("/graduates/:id", uploader.single('photo'), (req, res, next) => {
+  const {firstName, lastName, username, catchphrase,bootCampGraduation,emailAddress, password, bootCampName, bootCampCity, industry, yearsInIndustry, languagesSpoken,currentlyLearning, myGif, githubUsername, githubProfile,linkedInProfile, mediumProfile} = req.body;  // **! BE Mindful Imagefile probably needs to be a req.file
   User.findByIdAndUpdate(req.params.id,{
     firstName,
     lastName, 
     username, 
-    profileImage,  // **! BE Mindful Imagefile probably needs to be a req.file
+    imgPath: req.file.path,
+    imgName:req.file.originalname,
+    publicId: req.file.filename,
     catchphrase,
     bootCampGraduation,
     emailAddress, 
