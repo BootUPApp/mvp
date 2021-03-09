@@ -106,7 +106,7 @@ router.post("/graduate/signup", uploader.single('photo'), (req,res,next) => {
           const salt = bcrypt.genSaltSync();
           const hash = bcrypt.hashSync(password, salt);
       
-          const {firstName,lastName, catchphrase,bootCampGraduation,emailAddress, bootCampName, bootCampCity, industry, yearsInIndustry, languagesSpoken,currentlyLearning, myGif, githubUsername, githubProfile,linkedInProfile, mediumProfile} = req.body
+          const {firstName,lastName, catchphrase,bootCampGraduation,emailAddress, bootCampName, bootCampCity, industry,InputList, yearsInIndustry, languagesSpoken,currentlyLearning, myGif, githubUsername, githubProfile,linkedInProfile, mediumProfile} = req.body
 
           User.create({
             firstName,
@@ -120,7 +120,7 @@ router.post("/graduate/signup", uploader.single('photo'), (req,res,next) => {
             emailAddress, 
             bootCampName, 
             bootCampCity, 
-            skills:[{ skill: req.body.skill, rating: req.body.rating}],
+            InputList,
             industry, 
             yearsInIndustry, 
             languagesSpoken,
@@ -172,12 +172,6 @@ req.login(user, err => {
 })
   })(req, res)
 })
-
-// Recruiter Logged in
-router.get("/graduate/loggedin", (req,res, next) => {
-  res.json(req.user)
-})
-
 
 
 // Universal Logout

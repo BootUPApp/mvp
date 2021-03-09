@@ -46,7 +46,8 @@ const signupGraduate = (
   linkedInProfile,
   mediumProfile,
   githubId,
-  companyName)  => {
+  companyName,
+  InputList)  => {
   console.log(`sending ${username} to the database` )
   return axios.post("/api/auth/graduate/signup", {
     username,
@@ -71,7 +72,8 @@ const signupGraduate = (
     linkedInProfile,
     mediumProfile,
     githubId,
-    companyName
+    companyName,
+    InputList
   }).then(response => {
     return response.data
   }).catch(error => {
