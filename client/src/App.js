@@ -11,6 +11,7 @@ import GraduateSignup from './components/GraduateSignup'
 import RecruiterLogin from './components/RecruiterLogin'
 import RecruiterSignup from './components/RecruiterSignup'
 import AllGraduates from './components/AllGraduates';
+import SelectedGraduate from './components/SelectedGraduate'
 
 
 class App extends React.Component {
@@ -40,6 +41,7 @@ setUser = user => {
         <Route exact path='/recruiter/login'   render={props => <RecruiterLogin setUser={this.setUser} {...props} />} />
         <Route exact path='/recruiter/signup' /*component={RecruiterSignup} */ render={props => <RecruiterSignup setUser={this.setUser} {...props} />} />
         <Route exact path='/graduates' component={AllGraduates} />
+        <Route exact path='/graduates/:id' component={SelectedGraduate} />
       </Switch> 
     </div>
   )

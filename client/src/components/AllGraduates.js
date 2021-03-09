@@ -18,7 +18,12 @@ export default function AllGraduates() {
   }, [])
   const displayGraduates = state.map((graduate) => {
         return <div key={graduate._id}>
-        <Link to={`/graduate/${graduate._id}`}>{graduate.firstName} {graduate.lastName}</Link>
+        <Link to={{
+          pathname: `/graduates/${graduate._id}`,
+          state: {
+            graduate: state
+          }
+          }}>{graduate.firstName} {graduate.lastName}</Link>
         <br/>
         </div>
        })
@@ -26,7 +31,16 @@ export default function AllGraduates() {
   return (
     <div className='Home'>
       <h1>All Graduates</h1>
-      <h2>{displayGraduates}</h2>
+      <div className='Filters'>
+        <h2>Filters</h2>
+        <h3>Industries</h3>
+        <h3>Skills</h3>
+        <h3>Learning</h3>
+      </div>
+      <div className='Graduates'>
+        <h2>Search results</h2>
+        <h2>{displayGraduates}</h2>
+      </div>
     </div>
   )
 }
