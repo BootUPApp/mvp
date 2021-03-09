@@ -10,6 +10,7 @@ const userSchema = new Schema({
     lastName: {
         type: String,
         lowercase: true},
+        imageUrl: String,
     role: String,
     imgPath: String,
     publicId: String,
@@ -41,7 +42,7 @@ const userSchema = new Schema({
     linkedInProfile: String,
     mediumProfile: String,
     githubId: String,
-    companyName: String,
+    companyname: String,
 
 });
 

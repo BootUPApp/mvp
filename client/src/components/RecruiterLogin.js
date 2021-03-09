@@ -1,14 +1,18 @@
 import React from 'react'
 import {loginRecruiter} from '../services/auth';
-
+import service from '../api/service';
 
 class RecruiterLogin extends React.Component {
 
   state = {
     username: '',
     password: '',
-    message: ''
+    message: '',
+    imgPath: '',
+    companyname: '',
   }
+
+
 
   handleChange = event => {
     const { name, value } = event.target;
@@ -19,14 +23,14 @@ class RecruiterLogin extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { username, password } = this.state;
-    loginRecruiter(username, password)
+    const { username, password,imgPath } = this.state;
+    loginRecruiter(username, password,imgPath)
       .then(user => {
         if (user.message) {
           this.setState({
             message: user.message,
             username: '',
-            password: ''
+            password: '',
           })
         } else {
           // the response from the server is a user object -> signup was successful
@@ -59,6 +63,7 @@ class RecruiterLogin extends React.Component {
             value={this.state.password}
             onChange={this.handleChange}
             id="password"/>
+         
           <br/>
           <button type="submit">Log in</button>
           {this.state.message && (
