@@ -1,46 +1,79 @@
-import { React, useState, useEffect } from 'react'
+import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-export default function AllGraduates() {
-  const [state, setState] = useState([])
-  // console.log(state)
+class AllGraduates extends React.Component {
+  
+  state = {
+    users: [],
+    query: ''
+  }
 
-  useEffect (() => {
+  componentDidMount() {
     axios.get('/api/graduates')
     .then(response => {
        console.log('Hi from axios,', response)
-      setState(response.data)
+      this.setState({
+        users: response.data
+      })
     })
     .catch(error => {
       console.log(error)
     })
-  }, [])
-  const displayGraduates = state.map((graduate) => {
-        return <div key={graduate._id}>
-        <Link to={{
-          pathname: `/graduates/${graduate._id}`,
-          state: {
-            graduate: state
-          }
-          }}>{graduate.firstName} {graduate.lastName}</Link>
-        <br/>
-        </div>
-       })
-       console.log(state)
-  return (
-    <div className='Home'>
-      <h1>All Graduates</h1>
-      <div className='Filters'>
-        <h2>Filters</h2>
-        <h3>Industries</h3>
-        <h3>Skills</h3>
-        <h3>Learning</h3>
-      </div>
-      <div className='Graduates'>
-        <h2>Search results</h2>
-        <h2>{displayGraduates}</h2>
-      </div>
-    </div>
-  )
+  }
+
+  handleChange = event => {
+    console.log(event.target.value)
+    let searchQuery = event.target.value.toLowerCase;
+  
+    this.setState(() => ({
+      query: searchQuery,
+    }))
+  }
+
+       render(){
+        console.log(this.state.users)
+
+        const displayGraduates = this.state.users.map((graduate) => {
+          return(
+            <div key={graduate._id}>
+             <Link to={{
+               pathname: `/graduates/${graduate._id}`,
+             state: {
+                graduate: this.state.users
+               }
+              }}>{graduate.firstName} {graduate.lastName}</Link>
+             <br/>
+          </div>
+          )
+         })
+
+        return (
+          <div className='Home'>
+            <h1>All Graduates</h1>
+            <form>
+            <label htmlFor="query">Search: </label>
+                      <input
+                      type="text"
+                      id="query"
+                      name="query"
+                      value={this.state.query}
+                      onChange={this.handleChange}
+                      />
+            </form>
+            <div className='Filters'>
+              <h2>Filters</h2>
+              <h3>Industries</h3>
+              <h3>Skills</h3>
+              <h3>Learning</h3>
+            </div>
+            <div className='Graduates'>
+              <h2>Search results</h2>
+              <h2>{displayGraduates}</h2>
+            </div>
+          </div>
+        )
+       }
+  
 }
+export default AllGraduates;
