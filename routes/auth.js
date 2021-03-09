@@ -179,7 +179,7 @@ req.login(user, err => {
 router.delete('/logout', (req,res) => {
   req.logout();
   res.status(200).json({
-      message: "Logout successfull"
+      message: "Logout successful"
   })
 })
 

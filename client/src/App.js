@@ -4,8 +4,8 @@ import { Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 
-import Recruiter from './components/Recruiter';
-import Graduate from './components/Graduate';
+import RecruiterAccess from './components/RecruiterAccess';
+import GraduateAccess from './components/Graduate';
 import GraduateLogin from './components/GraduateLogin'
 import GraduateSignup from './components/GraduateSignup'
 import RecruiterLogin from './components/RecruiterLogin'
@@ -36,13 +36,34 @@ setUser = user => {
     <div>
     <Navbar user={this.state.user} setUser={this.setUser}/>
       <Switch>
-        <Route exact path='/' component={Home} />
-        <Route exact path='/recruiter' component={Recruiter} />
-        <Route exact path='/graduate' component={Graduate} />
-        <Route exact path='/graduate/login' render={props => <GraduateLogin setUser={this.setUser} {...props} />} />
-        <Route exact path='/graduate/signup' render={props => <GraduateSignup setUser={this.setUser} {...props} />} />
-        <Route exact path='/recruiter/login'   render={props => <RecruiterLogin setUser={this.setUser} {...props} />} />
-        <Route exact path='/recruiter/signup' /*component={RecruiterSignup} */ render={props => <RecruiterSignup setUser={this.setUser} {...props} />} />
+        <Route 
+          exact path='/'
+          component={Home}
+          />
+        <Route
+          exact path='/recruiter'
+          component={RecruiterAccess}
+          />
+        <Route 
+          exact path='/graduate' 
+          component={GraduateAccess}
+          />
+        <Route 
+          exact path='/graduate/login' 
+          render={props => <GraduateLogin setUser={this.setUser} {...props} />}
+          />
+        <Route 
+          exact path='/graduate/signup'
+          render={props => <GraduateSignup setUser={this.setUser} {...props} />} 
+          />
+        <Route
+          exact path='/recruiter/login'
+          render={props => <RecruiterLogin setUser={this.setUser} {...props} />} 
+          />
+        <Route
+          exact path='/recruiter/signup' /*component={RecruiterSignup} */ 
+          render={props => <RecruiterSignup setUser={this.setUser} {...props} />} 
+          />
         <ProtectedRoute
           exact path='/recruiter/dashboard/:id'
           user={this.state.user}
