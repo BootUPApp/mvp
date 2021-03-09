@@ -8,13 +8,14 @@ class GraduateSignup extends React.Component{
     password: '',
     firstName: '',
     lastName: '',
-    profileImage: '',
+    // profileImage: '',
     catchphrase: '',
     emailAddress: '',
     bootCampName: '',
     bootCampCity: '',
     bootCampGraduation: '',
-    skills: [],
+    skill: '',
+    rating: '',
     industry: '',
     yearsInIndustry: '',
     languagesSpoken: [],
@@ -44,7 +45,7 @@ class GraduateSignup extends React.Component{
       password,
       firstName,
       lastName,
-      profileImage,
+      // profileImage,
       catchphrase,
       emailAddress,
       bootCampName,
@@ -70,7 +71,7 @@ class GraduateSignup extends React.Component{
       password,
       firstName,
       lastName,
-      profileImage,
+      // profileImage,
       catchphrase,
       emailAddress,
       bootCampName,
@@ -88,39 +89,41 @@ class GraduateSignup extends React.Component{
       linkedInProfile,
       mediumProfile,
       githubId,
-      companyName)
+      companyName
+      )
       .then(user => {
         if (user.message) {
           this.setState({
             message: user.message,
             username: '',
-            password: '',
-            firstName: '',
-            lastName: '',
-            profileImage: '',
-            catchphrase: '',
-            emailAddress: '',
-            bootCampName: '',
-            bootCampCity: '',
-            bootCampGraduation: '',
-            skills: [],
-            industry: '',
-            yearsInIndustry: '',
-            languagesSpoken: [],
-            currentlyLearning: [],
-            myGif: '',
-            githubUsername: '',
-            githubProfile: '',
-            linkedInProfile: '',
-            mediumProfile: '',
-            githubId: '',
-            companyName: '',
+            // password: '',
+            // firstName: '',
+            // lastName: '',
+            // profileImage: '',
+            // catchphrase: '',
+            // emailAddress: '',
+            // bootCampName: '',
+            // bootCampCity: '',
+            // bootCampGraduation: '',
+            // skills: [],
+            // industry: '',
+            // yearsInIndustry: '',
+            // languagesSpoken: [],
+            // currentlyLearning: [],
+            // myGif: '',
+            // githubUsername: '',
+            // githubProfile: '',
+            // linkedInProfile: '',
+            // mediumProfile: '',
+            // githubId: '',
+            // companyName: '',
           })
         } else {
           // the response from the server is a user object -> signup was successful
           // we want to put the user object in the state of App.js
           console.log(user);
           this.setState({message: ''})
+          this.props.history.push(`/graduates`)
         }
       })
   }
@@ -147,13 +150,13 @@ class GraduateSignup extends React.Component{
             id="lastName"
           />
           <br/>
-          <label htmlFor="userName">Username: </label>
+          <label htmlFor="username">Username: </label>
           <input
             type="text"
-            name="userName"
-            value={this.state.userName}
+            name="username"
+            value={this.state.username}
             onChange={this.handleChange}
-            id="userName"
+            id="username"
           /><br/>
           <label htmlFor="emailAddress">Email address: </label>
           <input
@@ -230,12 +233,14 @@ class GraduateSignup extends React.Component{
           <label htmlFor="rating">Rating: </label>
           <select
             name="rating"
+            value={this.state.rating}
+            onChange={this.handleChange}
             id="rating">
             <option defaultValue="1">1 – noob</option>
             <option value="2">2</option>
             <option value="3">3 – intermediate</option>
-            <option value="2">4</option>
-            <option value="2">5 – ninja</option>
+            <option value="4">4</option>
+            <option value="5">5 – ninja</option>
           </select>
           <br/>
           <label htmlFor="currentlyLearning">Currently learning: </label>
@@ -320,6 +325,9 @@ class GraduateSignup extends React.Component{
           />
           <br/>
           <button type="submit">Sign Up</button>
+          {this.state.message && (
+            <h3>{this.state.message}</h3>
+          )}
       </form>
     </div>
   )

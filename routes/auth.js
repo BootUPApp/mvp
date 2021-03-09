@@ -8,10 +8,12 @@ const { uploader, cloudinary } = require("../config/cloudinary");
 
 // Recruiter Sign Up / Insomnia Tested X
 
+
 router.post("/recruiter/signup", uploader.single('imageUrl'), (req,res,next) => {
   
   
   const {username,password} = req.body;
+
 
   if(password.length < 8){
       return res.status(400).json({ message: 'Your password must be 8 chars minimum' });
@@ -34,6 +36,7 @@ router.post("/recruiter/signup", uploader.single('imageUrl'), (req,res,next) => 
       companyname:req.body.companyname,
       firstName: req.body.firstname,
       lastName: req.body.lastname
+      
     }).then(recruiterToDB => {
       res.status(201).json(recruiterToDB)
     }).catch(error => {
@@ -85,19 +88,20 @@ router.post("/graduate/signup", uploader.single('photo'), (req,res,next) => {
           const salt = bcrypt.genSaltSync();
           const hash = bcrypt.hashSync(password, salt);
       
-          const {firstName, lastName, catchphrase,bootCampGraduation,emailAddress, bootCampName, bootCampCity, industry, yearsInIndustry, languagesSpoken,currentlyLearning, myGif, githubUsername, githubProfile,linkedInProfile, mediumProfile} = req.body
+          const {firstName,lastName, catchphrase,bootCampGraduation,emailAddress, bootCampName, bootCampCity, industry, yearsInIndustry, languagesSpoken,currentlyLearning, myGif, githubUsername, githubProfile,linkedInProfile, mediumProfile} = req.body
 
           User.create({
             firstName,
             lastName, 
-            username: username, 
-            imgPath: req.file.path,
-             imgName:req.file.originalname,
-             publicId: req.file.filename,
+            username: username,
+            password: hash, 
+            role: 'Graduate',
+            // imgPath: req.file.path,
+            // imgName:req.file.originalname,
+            // publicId: req.file.filename,
             catchphrase,
             bootCampGraduation,
             emailAddress, 
-            password: hash, 
             bootCampName, 
             bootCampCity, 
             skills:[{ skill: req.body.skill, rating: req.body.rating}],

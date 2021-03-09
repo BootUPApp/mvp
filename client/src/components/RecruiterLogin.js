@@ -37,7 +37,7 @@ class RecruiterLogin extends React.Component {
           // we want to put the user object in the state of App.js
           console.log(user)
           this.props.setUser(user);
-          this.props.history.push("/recruiter")
+          this.props.history.push(`/recruiter/${user._id}`)
         }
       })
   }
@@ -66,6 +66,9 @@ class RecruiterLogin extends React.Component {
          
           <br/>
           <button type="submit">Log in</button>
+          {this.state.message && (
+            <h3>{this.state.message}</h3>
+          )}
       </form>
     </div>
     )

@@ -11,6 +11,8 @@ const userSchema = new Schema({
         type: String,
         lowercase: true},
         imageUrl: String,
+    role: String,
+    imgPath: String,
     publicId: String,
     catchphrase: String,
     emailAddress: {

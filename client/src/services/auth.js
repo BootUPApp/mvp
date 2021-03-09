@@ -23,9 +23,55 @@ const signupRecruiter = (
 
 
 
-const signupGraduate = (username, password)  => {
+const signupGraduate = (
+      username,
+      password,
+      firstName,
+      lastName,
+      // profileImage,
+      catchphrase,
+      emailAddress,
+      bootCampName,
+      bootCampCity,
+      bootCampGraduation,
+      skill,
+      rating,
+      industry,
+      yearsInIndustry,
+      languagesSpoken,
+      currentlyLearning,
+      myGif,
+      githubUsername,
+      githubProfile,
+      linkedInProfile,
+      mediumProfile,
+      githubId,
+      companyName)  => {
+  console.log(`sending ${username} to the database` )
   return axios.post("/api/auth/graduate/signup", {
-      username, password
+      username,
+      password,
+      firstName,
+      lastName,
+      // profileImage,
+      catchphrase,
+      emailAddress,
+      bootCampName,
+      bootCampCity,
+      bootCampGraduation,
+      skill,
+      rating,
+      industry,
+      yearsInIndustry,
+      languagesSpoken,
+      currentlyLearning,
+      myGif,
+      githubUsername,
+      githubProfile,
+      linkedInProfile,
+      mediumProfile,
+      githubId,
+      companyName
   }).then(response => {
     return response.data
   }).catch(error => {

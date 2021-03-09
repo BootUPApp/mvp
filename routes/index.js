@@ -17,8 +17,8 @@ router.post('/upload', uploader.single('imageUrl'), (req, res, next) => {
 });
 
 // GET Recruiter / Insomnia Test x
-router.get("/recruiter", (req,res, next) => {
-  User.find().then(recruitersFromDB => {
+router.get("/recruiters", (req,res, next) => {
+  User.find({role: 'Recruiter'}).then(recruitersFromDB => {
       res.json(recruitersFromDB);
   }).catch(error => {
     next(error);
@@ -72,7 +72,7 @@ router.delete("/recruiter/:id", (req,res,next) => {
 
 // Get Graduates / Insomnia Test x
 router.get("/graduates", (req,res,next) => {
-  User.find().then(graduatesFromDB => {
+  User.find({role: 'Graduate'}).then(graduatesFromDB => {
         res.status(200).json(graduatesFromDB);
       }).catch(error => {
         next(error);  
