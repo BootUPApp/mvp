@@ -33,6 +33,7 @@ router.post("/recruiter/signup", uploader.single('imageUrl'), (req,res,next) => 
       username: username,
       password: hash,
       imageUrl: req.body.imageUrl,
+      role: 'Recruiter',
       companyname:req.body.companyname,
       firstName: req.body.firstname,
       lastName: req.body.lastname

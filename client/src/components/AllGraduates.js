@@ -34,7 +34,9 @@ class AllGraduates extends React.Component {
         // console.log(this.state.users)
 
         let searchResults = this.state.users.filter((graduate) => {
-          return graduate.firstName.toLowerCase().includes(this.state.query)  
+          return graduate.firstName.toLowerCase().includes(this.state.query) ||
+          graduate.lastName.toLowerCase().includes(this.state.query)
+          // || graduate.skills.toLowerCase().includes(this.state.query)
             })
         
         let displayGraduates = searchResults.map(graduate => {
