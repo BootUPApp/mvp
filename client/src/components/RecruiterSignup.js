@@ -1,6 +1,6 @@
 import React from 'react';
 import {signupRecruiter} from '../services/auth'
-import service from '../api/service';
+import axios from 'axios';
 
 class RecruiterSignup extends React.Component{
 
@@ -12,28 +12,27 @@ class RecruiterSignup extends React.Component{
   }
 
 
-  handleImageUpload = () => {
+ handleFileUpload = (event) => {
 
-    const { files } = document.querySelector('input[type="file"]')
-    const formData = new FormData();
-    formData.append('file', files[0]);
-    // replace this with your upload preset name
-    formData.append('imgPath', 'qv5rfbwg');
-    const options = {
-      method: 'POST',
-      body: formData,
-    };
-    
-    // replace cloudname with your Cloudinary cloud_name
-    return fetch('https://api.Cloudinary.com/v1_1/detiwkwhu/image/upload', options)
-      .then(res => res.json())
-      .then(res => {
-        this.setState({
-          imgPath: res.secure_url,
-        })
-      })
-      .catch(err => console.log(err));
+  console.log('Target File is', event.target.files[0])
+
+  const handleFileData = new FormData()
+  handleFileData.append('photo', event.target.files[0])
+
+  const options = {
+    method: 'POST',
+    body: handleFileData,
   };
+
+  return fetch('https://api.Cloudinary.com/v1_1/detiwkwhu/image/upload', options)
+  .then(res => res.json())
+  .then(res => console.log(res))
+  .catch(err => console.log(err));
+
+
+
+}
+
 
   handleChange = event => {
     const { name, value } = event.target;
@@ -84,7 +83,7 @@ class RecruiterSignup extends React.Component{
             type="file"
             id="imgPath"
             name="imgPath"
-            onChange={this.handleFileUpload}
+            onChange= {event => this.handleFileUpload(event)}
           />
             <br/>
             <label htmlFor="username">Username: </label>

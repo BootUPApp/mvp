@@ -1,3 +1,5 @@
+const cors = require('cors');
+
 // ℹ️ Gets access to environment variables/settings
 // https://www.npmjs.com/package/dotenv
 require("dotenv/config");
@@ -18,6 +20,15 @@ const app = express();
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require("./config")(app);
 
+
+// Cors Config
+
+app.use(
+  cors({
+    // this could be multiple domains/origins, but we will allow just our React app
+    origin: ['http://localhost:3000']
+  })
+);
 
 // session configuration
 const session = require('express-session');
