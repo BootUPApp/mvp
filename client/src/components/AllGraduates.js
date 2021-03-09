@@ -24,17 +24,20 @@ class AllGraduates extends React.Component {
 
   handleChange = event => {
     console.log(event.target.value)
-    let searchQuery = event.target.value.toLowerCase;
-  
+    let searchQuery = event.target.value.toLowerCase();
     this.setState(() => ({
       query: searchQuery,
     }))
   }
 
        render(){
-        console.log(this.state.users)
+        // console.log(this.state.users)
 
-        const displayGraduates = this.state.users.map((graduate) => {
+        let searchResults = this.state.users.filter((graduate) => {
+          return graduate.firstName.toLowerCase().includes(this.state.query)  
+            })
+        
+        let displayGraduates = searchResults.map(graduate => {
           return(
             <div key={graduate._id}>
              <Link to={{
