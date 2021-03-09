@@ -46,19 +46,19 @@ class RecruiterSignup extends React.Component{
     event.preventDefault();
     const {
       firstname,
+      lastname,
+      companyname,
       imageUrl,
       username,
       password, 
-      companyname,
-      lastname,
        } = this.state;
     signupRecruiter(
       firstname,
+      lastname,
+      companyname,
       imageUrl,
       username,
       password,
-      companyname,
-      lastname
       )
       .then(user => {
         if (user.message) {
