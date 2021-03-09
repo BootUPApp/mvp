@@ -19,7 +19,7 @@ const handleUpload = (theFile) => {
     .catch(errorHandler);
 }
 
-const createEvent = (event) => {
+const createRecruiter = (event) => {
   // console.log('new thing is: ', newThing)
   return service
     .post('/events', event)
