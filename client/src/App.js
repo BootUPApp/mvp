@@ -12,6 +12,9 @@ import RecruiterLogin from './components/RecruiterLogin'
 import RecruiterSignup from './components/RecruiterSignup'
 import AllGraduates from './components/AllGraduates';
 import SelectedGraduate from './components/SelectedGraduate'
+import ProtectedRoute from './components/ProtectedRoute'
+import RecruiterDashboard from './components/RecruiterDashboard'
+import GraduateDashboard from './components/RecruiterDashboard'
 
 
 class App extends React.Component {
@@ -31,7 +34,7 @@ setUser = user => {
 
   return (
     <div>
-    <Navbar/>
+    <Navbar user={this.state.user} setUser={this.setUser}/>
       <Switch>
         <Route exact path='/' component={Home} />
         <Route exact path='/recruiter' component={Recruiter} />
@@ -40,8 +43,30 @@ setUser = user => {
         <Route exact path='/graduate/signup' render={props => <GraduateSignup setUser={this.setUser} {...props} />} />
         <Route exact path='/recruiter/login'   render={props => <RecruiterLogin setUser={this.setUser} {...props} />} />
         <Route exact path='/recruiter/signup' /*component={RecruiterSignup} */ render={props => <RecruiterSignup setUser={this.setUser} {...props} />} />
-        <Route exact path='/graduates' component={AllGraduates} />
-        <Route exact path='/graduates/:id' component={SelectedGraduate} />
+        <ProtectedRoute
+          exact path='/recruiter/dashboard/:id'
+          user={this.state.user}
+          component={RecruiterDashboard}
+          redirectPath='/recruiter/login'
+        />
+        <ProtectedRoute
+          exact path='/graduate/dashboard/:id'
+          user={this.state.user}
+          component={GraduateDashboard}
+          redirectPath='/recruiter/login'
+        />
+        <ProtectedRoute
+          exact path='/graduates'
+          user={this.state.user}
+          component={AllGraduates}
+          redirectPath='/recruiter/login'
+        />
+        <ProtectedRoute
+          exact path='/graduates/:id'
+          user={this.state.user}
+          component={SelectedGraduate}
+          redirectPath='/recruiter/login'
+        />
       </Switch> 
     </div>
   )

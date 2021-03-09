@@ -33,7 +33,7 @@ class GraduateLogin extends React.Component {
           // we want to put the user object in the state of App.js
           console.log(user)
           this.props.setUser(user);
-          this.props.history.push(`/recruiter/${user._id}`)
+          this.props.history.push(`/graduate/dashboard/${user._id}`)
         }
       })
   }

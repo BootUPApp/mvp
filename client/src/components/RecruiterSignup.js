@@ -79,7 +79,7 @@ class RecruiterSignup extends React.Component{
           this.setState({message: ''})
 
           this.props.setUser(user);
-          this.props.history.push("/")
+          this.props.history.push(`/graduate/dashboard/${user._id}`)
         }
       })
   }

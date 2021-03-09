@@ -146,7 +146,7 @@ class GraduateSignup extends React.Component{
           console.log(user);
           this.setState({message: ''})
           this.props.setUser(user);
-          this.props.history.push(`/graduates`)
+          this.props.history.push(`/graduate/dashboard/${user._id}`)
         }
       })
   }
