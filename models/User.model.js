@@ -26,9 +26,9 @@ const userSchema = new Schema({
         type: String,
         lowercase: true},
     bootCampGraduation: String,
-    skills: [{
+    InputList: [{
         skill: String,
-        rating: Number
+        rating: String,
     }],
     industry: {
         type: String,

@@ -91,15 +91,17 @@ class RecruiterSignup extends React.Component{
         <h1>Recruiter Signup</h1>
       
         <form onSubmit={this.handleSubmit}>
-        <label htmlFor="firstname">firstname: </label>
+        <span className="input input--hoshi">
             <input
+            className="input__field input__field--hoshi"
               type="text"
               name="firstname"
               value={this.state.firstname}
               onChange={this.handleChange}
               id="firstname"
             />
-
+            <label htmlFor="firstname" className="input__label input__label--hoshi"><span className="input__label-content input__label-content--hoshi">Firstname</span> </label>
+      </span>
 <label htmlFor="lastname">lastname: </label>
             <input
               type="text"

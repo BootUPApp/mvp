@@ -28,7 +28,8 @@ class GraduateSignup extends React.Component{
     mediumProfile: '',
     githubId: '',
     companyName: '',
-    message: ''
+    message: '',
+    InputList: [{ skill: "", rating: "" }],
   }
 
 
@@ -60,6 +61,35 @@ class GraduateSignup extends React.Component{
     })
   }
 
+
+ // handle input change
+ handleInputChange = (e, index) => {
+  const { name, value } = e.target;
+  const list = [...this.state.InputList];
+  list[index][name] = value;
+  this.setState({
+    InputList: list
+  })
+};
+ 
+// handle click event of the Remove button
+ handleRemoveClick = (index) => {
+  const list = [...this.state.InputList];
+  list.splice(index, 1);
+  this.setState((state,props) => ({
+    inputList: state.list
+  }))
+};
+ 
+
+
+// handle click event of the Add button
+ handleAddClick = () => {
+  this.setState({
+    InputList: [...this.state.InputList, { skill: "", rating: "" }]
+  })
+};
+
   handleSubmit = event => {
     event.preventDefault();
     const {
@@ -85,7 +115,8 @@ class GraduateSignup extends React.Component{
       linkedInProfile,
       mediumProfile,
       githubId,
-      companyName
+      companyName,
+      InputList,
     } = this.state;
     console.log(this.state)
     signupGraduate(
@@ -111,7 +142,8 @@ class GraduateSignup extends React.Component{
       linkedInProfile,
       mediumProfile,
       githubId,
-      companyName
+      companyName,
+      InputList
       )
       .then(user => {
         if (user.message) {
@@ -139,6 +171,7 @@ class GraduateSignup extends React.Component{
              mediumProfile: '',
              githubId: '',
              companyName: '',
+             InputList: [{skill: '', rating: ''}]
           })
         } else {
           // the response from the server is a user object -> signup was successful
@@ -151,6 +184,35 @@ class GraduateSignup extends React.Component{
       })
   }
   render() {
+ 
+    
+    const renderNewForm = this.state.InputList.map((x, i) => {
+      return (
+        <div className="skill">
+          <input
+            name="skill"
+ placeholder="Enter Your Skill"
+            value={x.skill}
+            onChange={e => this.handleInputChange(e, i)}
+          />
+          <input
+            className="skill"
+            name="rating"
+ placeholder="Rate your Skill"
+            value={x.rating}
+            onChange={e => this.handleInputChange(e, i)}
+          />
+          <div className="btn-box">
+            {this.state.InputList.length !== 1 && <button
+              className="mr10"
+              onClick={(i) => this.handleRemoveClick(i)}>Remove</button>}
+            {this.state.InputList.length - 1 === i && <button onClick={this.handleAddClick}>Add another skill 
+👨‍💻</button>}
+          </div>
+        </div>
+      );
+    })
+    
   return (
     <div>
       <h1>Graduate Signup</h1>
@@ -264,6 +326,10 @@ class GraduateSignup extends React.Component{
             <option value="4">4</option>
             <option value="5">5 – ninja</option>
           </select>
+          <br/>
+          {renderNewForm}
+          <br/>
+          <button onClick={this.toggleAnoterSkillField}>Add another Skill 📊</button>
           <br/>
           <label htmlFor="currentlyLearning">Currently learning: </label>
           <input
