@@ -10,10 +10,9 @@ const { uploader, cloudinary } = require("../config/cloudinary");
 
 
 router.post("/recruiter/signup", uploader.single('imageUrl'), (req,res,next) => {
-  
+
   
   const {username,password} = req.body;
-
 
   if(password.length < 8){
       return res.status(400).json({ message: 'Your password must be 8 chars minimum' });
@@ -37,13 +36,30 @@ router.post("/recruiter/signup", uploader.single('imageUrl'), (req,res,next) => 
       firstName: req.body.firstname,
       lastName: req.body.lastname
       
-    }).then(recruiterToDB => {
-      res.status(201).json(recruiterToDB)
+    }).then((recruiterToDB) => {
+    //  res.status(201).json(recruiterToDB)
+      passport.authenticate('local', (err, recruiterToDB) => {
+        if(err){
+          return res.status(500).json({message: 'Error while attemting to login'})
+        }
+    if(!recruiterToDB){
+      return res.status(400).json({message: 'Wrong credentials'})
+    }
+    req.login(recruiterToDB, err => {
+      if(err){
+        return res.status(500).json({message: 'Error while attemting to login'})
+      } else {
+        return res.status(200).json(recruiterToDB);
+      }
+    })
+      })(req, res)
     }).catch(error => {
       next(error)
      })
     }
   })
+
+  
 })
 
 // Recruiter Log In
@@ -65,14 +81,16 @@ req.login(user, err => {
   })(req, res)
 })
 
-// Recruiter Logged in
-router.get("/recruiter/loggedin", (req,res, next) => {
+// User Logged in
+router.get("/loggedin", (req,res, next) => {
   res.json(req.user)
   res.send('Hello');
 })
 
 // Graduate Sign Up / Insomnia Tested X
 router.post("/graduate/signup", uploader.single('photo'), (req,res,next) => {
+
+ 
   const {username, password } = req.body;
   if(password.length < 8){
       return res.status(400).json({ message: 'Your password must be 8 chars minimum' });
@@ -112,13 +130,28 @@ router.post("/graduate/signup", uploader.single('photo'), (req,res,next) => {
             githubProfile,
             linkedInProfile, 
             mediumProfile, 
-          }).then(sendGradToDB => {
-            res.status(201).json(sendGradToDB)
-          }).catch(error => {
-            next(error);
+          }).then((graduateToDb) => {
+            //  res.status(201).json(graduateToDb)
+              passport.authenticate('local', (err, graduateToDb) => {
+                if(err){
+                  return res.status(500).json({message: 'Error while attemting to login'})
+                }
+            if(!graduateToDb){
+              return res.status(400).json({message: 'Wrong credentials'})
+            }
+            req.login(graduateToDb, err => {
+              if(err){
+                return res.status(500).json({message: 'Error while attemting to login'})
+              } else {
+                return res.status(200).json(graduateToDb);
+              }
+            })
+              })(req, res)
+            }).catch(error => {
+              next(error)
+             })
+            }
           })
-    }
-  })
 })
 
 // Graduate Log In

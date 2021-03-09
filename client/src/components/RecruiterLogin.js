@@ -8,8 +8,6 @@ class RecruiterLogin extends React.Component {
     username: '',
     password: '',
     message: '',
-    imgPath: '',
-    companyname: '',
   }
 
 
@@ -23,8 +21,8 @@ class RecruiterLogin extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { username, password,imgPath } = this.state;
-    loginRecruiter(username, password,imgPath)
+    const { username, password } = this.state;
+    loginRecruiter(username, password)
       .then(user => {
         if (user.message) {
           this.setState({
