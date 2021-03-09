@@ -36,8 +36,8 @@ setUser = user => {
         <Route exact path='/' component={Home} />
         <Route exact path='/recruiter' component={Recruiter} />
         <Route exact path='/graduate' component={Graduate} />
-        <Route exact path='/graduate/login' component={GraduateLogin} />
-        <Route exact path='/graduate/signup' component={GraduateSignup} />
+        <Route exact path='/graduate/login' render={props => <GraduateLogin setUser={this.setUser} {...props} />} />
+        <Route exact path='/graduate/signup' render={props => <GraduateSignup setUser={this.setUser} {...props} />} />
         <Route exact path='/recruiter/login'   render={props => <RecruiterLogin setUser={this.setUser} {...props} />} />
         <Route exact path='/recruiter/signup' /*component={RecruiterSignup} */ render={props => <RecruiterSignup setUser={this.setUser} {...props} />} />
         <Route exact path='/graduates' component={AllGraduates} />
