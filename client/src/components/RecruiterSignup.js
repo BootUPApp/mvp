@@ -45,16 +45,16 @@ class RecruiterSignup extends React.Component{
   handleSubmit = event => {
     event.preventDefault();
     const {
-      firstname,
       imageUrl,
+      firstname,
       username,
       password, 
       companyname,
       lastname,
        } = this.state;
     signupRecruiter(
-      firstname,
       imageUrl,
+      firstname,
       username,
       password,
       companyname,
