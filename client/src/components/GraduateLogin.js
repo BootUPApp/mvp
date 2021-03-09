@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import {loginGraduate} from '../services/auth';
 
 
@@ -65,6 +66,7 @@ class GraduateLogin extends React.Component {
             <h3>{this.state.message}</h3>
           )}
       </form>
+      <h3>Not a graduate? Click <Link to={'/recruiter'}>here</Link> to access the recruiter pages</h3>
     </div>
     )
   }

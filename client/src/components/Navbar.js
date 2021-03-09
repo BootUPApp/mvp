@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import {logout} from '../services/auth'
+import { logout } from '../services/auth'
 
 const handleLogout = props => {
   logout().then(() => {
@@ -18,14 +18,28 @@ export default function Navbar(props) {
         </li>
         {/* If we have a logged in user -> show projects and logout otherwise show login and signup */}
         {props.user ? (
-          <>
+          props.user.role === 'Recruiter' ? (
+            <>
+            <li><Link to='/recruiter/dashboard/:id'>Edit your profile</Link></li>
             <li>
-              <Link to='/graduates'>All graduates</Link>
+              <Link to='/graduates'>View all graduates</Link>
             </li>
             <li>
               <Link to='/' onClick={() => handleLogout(props)} >Logout {props.user.username}</Link>
             </li>
           </>
+          ) : (
+            <>
+            <li><Link to='/graduate/dashboard/:id'>Edit Graduate profile</Link></li>
+            <li>
+              <Link to='/graduates'>View all graduates</Link>
+            </li>
+            <li>
+              <Link to='/' onClick={() => handleLogout(props)} >Logout {props.user.username}</Link>
+            </li>
+          </>
+          )
+          
         ) : (
             <>
               <li>
