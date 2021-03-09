@@ -42,9 +42,9 @@ export default function SelectedGraduate (props) {
             <h3>GitHub</h3>
             <p>*GitHub activity visual*</p>
             <h3>Links</h3>
-            <Link to={`${graduate.githubProfile}`}>GitHub</Link><br/>
-            <Link to={`${graduate.linkedInProfile}`}>LinkedIn</Link><br/>
-            <Link to={`${graduate.mediumProfile}`}>Medium</Link><br/>
+            <Link to={graduate.githubProfile}>GitHub</Link><br/>
+            <Link to={graduate.linkedInProfile}>LinkedIn</Link><br/>
+            <Link to={graduate.mediumProfile}>Medium</Link><br/>
             <a href={"mailto:" + graduate.emailAddress}><h3>contact</h3></a>
 
   

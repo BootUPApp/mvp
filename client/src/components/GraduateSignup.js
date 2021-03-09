@@ -96,7 +96,7 @@ class GraduateSignup extends React.Component{
           this.setState({
             message: user.message,
             username: '',
-            password: '',
+            // password: '',
             // firstName: '',
             // lastName: '',
             // profileImage: '',
@@ -123,6 +123,7 @@ class GraduateSignup extends React.Component{
           // we want to put the user object in the state of App.js
           console.log(user);
           this.setState({message: ''})
+          this.props.history.push(`/graduates`)
         }
       })
   }
@@ -232,12 +233,14 @@ class GraduateSignup extends React.Component{
           <label htmlFor="rating">Rating: </label>
           <select
             name="rating"
+            value={this.state.rating}
+            onChange={this.handleChange}
             id="rating">
             <option defaultValue="1">1 – noob</option>
             <option value="2">2</option>
             <option value="3">3 – intermediate</option>
-            <option value="2">4</option>
-            <option value="2">5 – ninja</option>
+            <option value="4">4</option>
+            <option value="5">5 – ninja</option>
           </select>
           <br/>
           <label htmlFor="currentlyLearning">Currently learning: </label>
