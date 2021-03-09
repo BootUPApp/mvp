@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 const service = axios.create({
-  baseURL: 'http://localhost:5005'
+  baseURL: 'http://localhost:5005/api'
   // withCredentials: true // => you might need this when having the users in the app
 });
 
@@ -19,16 +19,9 @@ const handleUpload = (theFile) => {
     .catch(errorHandler);
 }
 
-const createEvent = (event) => {
-  // console.log('new thing is: ', newThing)
-  return service
-    .post('/events', event)
-    .then(res => res.data)
-    .catch(errorHandler);
-}
+
 
 export default {
   service,
-  handleUpload,
-  createEvent
+  handleUpload
 };

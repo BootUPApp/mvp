@@ -8,7 +8,9 @@ const { uploader, cloudinary } = require("../config/cloudinary");
 
 // Recruiter Sign Up / Insomnia Tested X
 
-router.post("/recruiter/signup", uploader.single('imgPath'), (req,res,next) => {
+router.post("/recruiter/signup", uploader.single('imageUrl'), (req,res,next) => {
+  
+  
   const {username,password} = req.body;
 
   if(password.length < 8){
@@ -28,7 +30,10 @@ router.post("/recruiter/signup", uploader.single('imgPath'), (req,res,next) => {
     User.create({
       username: username,
       password: hash,
-      imagePath: req.body.imagePath,
+      imageUrl: req.body.imageUrl,
+      companyname:req.body.companyname,
+      firstName: req.body.firstname,
+      lastName: req.body.lastname
     }).then(recruiterToDB => {
       res.status(201).json(recruiterToDB)
     }).catch(error => {

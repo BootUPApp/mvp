@@ -5,34 +5,34 @@ import service from '../api/service';
 class RecruiterSignup extends React.Component{
 
   state = {
-    imgPath: '',
+    imageUrl: '',
     username: '',
     password: '',
-    message: ''
+    message: '',
+    companyname:'',
+    firstname:'',
+    lastname: ''
   }
 
 
-  handleImageUpload = () => {
-
-    const { files } = document.querySelector('input[type="file"]')
-    const formData = new FormData();
-    formData.append('file', files[0]);
-    // replace this with your upload preset name
-    formData.append('imgPath', 'qv5rfbwg');
-    const options = {
-      method: 'POST',
-      body: formData,
-    };
-    
-    // replace cloudname with your Cloudinary cloud_name
-    return fetch('https://api.Cloudinary.com/v1_1/detiwkwhu/image/upload', options)
-      .then(res => res.json())
-      .then(res => {
-        this.setState({
-          imgPath: res.secure_url,
-        })
+  handleFileUpload = e => {
+    console.log('The file to be uploaded is: ', e.target.files[0]);
+ 
+    const uploadData = new FormData();
+    // imageUrl => this name has to be the same as in the model since we pass
+    // req.body to .create() method when creating a new thing in '/api/things/create' POST route
+    uploadData.append('imageUrl', e.target.files[0]);
+ 
+    service
+      .handleUpload(uploadData)
+      .then(response => {
+        // console.log('response is: ', response);
+        // after the console.log we can see that response carries 'secure_url' which we can use to update the state
+        this.setState({ imageUrl: response.secure_url });
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log('Error while uploading the file: ', err);
+      });
   };
 
   handleChange = event => {
@@ -45,19 +45,31 @@ class RecruiterSignup extends React.Component{
   handleSubmit = event => {
     event.preventDefault();
     const {
+      firstname,
+      imageUrl,
       username,
-      password, imgPath } = this.state;
+      password, 
+      companyname,
+      lastname,
+       } = this.state;
     signupRecruiter(
+      firstname,
+      imageUrl,
       username,
       password,
-      imgPath)
+      companyname,
+      lastname
+      )
       .then(user => {
         if (user.message) {
           this.setState({
+            firstname:'',
             message: user.message,
-            imgPath: '',
+            imageUrl: '',
             username: '',
-            password: ''
+            password: '',
+            companyname: '',
+            lastname: ''
           })
         } else {
           // the response from the server is a user object -> signup was successful
@@ -74,17 +86,35 @@ class RecruiterSignup extends React.Component{
   }
 
   render() {
+    console.log()
     return (
       <div>
         <h1>Recruiter Signup</h1>
       
         <form onSubmit={this.handleSubmit}>
-        <label htmlFor="imgPath">Image: </label>
+        <label htmlFor="firstname">firstname: </label>
+            <input
+              type="text"
+              name="firstname"
+              value={this.state.firstname}
+              onChange={this.handleChange}
+              id="firstname"
+            />
+
+<label htmlFor="lastname">lastname: </label>
+            <input
+              type="text"
+              name="lastname"
+              value={this.state.lastname}
+              onChange={this.handleChange}
+              id="lastname"
+            />
+        <label htmlFor="imageUrl">Image: </label>
           <input
             type="file"
-            id="imgPath"
-            name="imgPath"
-            onChange={this.handleFileUpload}
+            id="imageUrl"
+            name="imageUrl"
+            onChange={e => this.handleFileUpload(e)}
           />
             <br/>
             <label htmlFor="username">Username: </label>
@@ -104,6 +134,14 @@ class RecruiterSignup extends React.Component{
               onChange={this.handleChange}
               id="password"
             />
+
+<label htmlFor="companyname">Company name: </label>
+          <input
+            type="companyname"
+            name="companyname"
+            value={this.state.companyname}
+            onChange={this.handleChange}
+            id="companyname"/>
             <br/>
             <button type="submit">Sign Up</button>
             {this.state.message && (

@@ -9,6 +9,7 @@ class RecruiterLogin extends React.Component {
     password: '',
     message: '',
     imgPath: '',
+    companyname: '',
   }
 
 
@@ -29,7 +30,7 @@ class RecruiterLogin extends React.Component {
           this.setState({
             message: user.message,
             username: '',
-            password: ''
+            password: '',
           })
         } else {
           // the response from the server is a user object -> signup was successful
@@ -62,6 +63,7 @@ class RecruiterLogin extends React.Component {
             value={this.state.password}
             onChange={this.handleChange}
             id="password"/>
+         
           <br/>
           <button type="submit">Log in</button>
       </form>

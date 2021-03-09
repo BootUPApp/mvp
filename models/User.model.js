@@ -10,7 +10,7 @@ const userSchema = new Schema({
     lastName: {
         type: String,
         lowercase: true},
-     imgPath: String,
+        imageUrl: String,
     publicId: String,
     catchphrase: String,
     emailAddress: {
@@ -40,7 +40,7 @@ const userSchema = new Schema({
     linkedInProfile: String,
     mediumProfile: String,
     githubId: String,
-    companyName: String,
+    companyname: String,
 
 });
 
