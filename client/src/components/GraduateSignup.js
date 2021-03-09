@@ -1,5 +1,6 @@
 import React from 'react'
 import {signupGraduate} from '../services/auth'
+import service from '../api/service'
 
 class GraduateSignup extends React.Component{
 
@@ -8,7 +9,7 @@ class GraduateSignup extends React.Component{
     password: '',
     firstName: '',
     lastName: '',
-    // profileImage: '',
+    ImageUrl: '',
     catchphrase: '',
     emailAddress: '',
     bootCampName: '',
@@ -30,6 +31,27 @@ class GraduateSignup extends React.Component{
     message: ''
   }
 
+
+  handleFileUpload = e => {
+    console.log('The file to be uploaded is: ', e.target.files[0]);
+ 
+    const uploadData = new FormData();
+    // imageUrl => this name has to be the same as in the model since we pass
+    // req.body to .create() method when creating a new thing in '/api/things/create' POST route
+    uploadData.append('imageUrl', e.target.files[0]);
+ 
+    service
+      .handleUpload(uploadData)
+      .then(response => {
+        // console.log('response is: ', response);
+        // after the console.log we can see that response carries 'secure_url' which we can use to update the state
+        this.setState({ imageUrl: response.secure_url });
+      })
+      .catch(err => {
+        console.log('Error while uploading the file: ', err);
+      });
+  };
+
   handleChange = event => {
     // console.log(event.target)
     const { name, value } = event.target;
@@ -45,7 +67,7 @@ class GraduateSignup extends React.Component{
       password,
       firstName,
       lastName,
-      // profileImage,
+      imageUrl,
       catchphrase,
       emailAddress,
       bootCampName,
@@ -71,7 +93,7 @@ class GraduateSignup extends React.Component{
       password,
       firstName,
       lastName,
-      // profileImage,
+      imageUrl,
       catchphrase,
       emailAddress,
       bootCampName,
@@ -96,27 +118,27 @@ class GraduateSignup extends React.Component{
           this.setState({
             message: user.message,
             username: '',
-            // password: '',
-            // firstName: '',
-            // lastName: '',
-            // profileImage: '',
-            // catchphrase: '',
-            // emailAddress: '',
-            // bootCampName: '',
-            // bootCampCity: '',
-            // bootCampGraduation: '',
-            // skills: [],
-            // industry: '',
-            // yearsInIndustry: '',
-            // languagesSpoken: [],
-            // currentlyLearning: [],
-            // myGif: '',
-            // githubUsername: '',
-            // githubProfile: '',
-            // linkedInProfile: '',
-            // mediumProfile: '',
-            // githubId: '',
-            // companyName: '',
+             password: '',
+             firstName: '',
+             lastName: '',
+             imageUrl: '',
+             catchphrase: '',
+             emailAddress: '',
+             bootCampName: '',
+             bootCampCity: '',
+             bootCampGraduation: '',
+             skills: [],
+             industry: '',
+             yearsInIndustry: '',
+             languagesSpoken: [],
+             currentlyLearning: [],
+             myGif: '',
+             githubUsername: '',
+             githubProfile: '',
+             linkedInProfile: '',
+             mediumProfile: '',
+             githubId: '',
+             companyName: '',
           })
         } else {
           // the response from the server is a user object -> signup was successful
@@ -167,13 +189,12 @@ class GraduateSignup extends React.Component{
             id="emailAddress"
           />
           <br/>
-          <label htmlFor="profileImage">Profile image: </label>
+          <label htmlFor="imageUrl">Profile image: </label>
           <input
             type="file"
-            name="profileImage"
-            value={this.state.profileImage}
-            onChange={this.handleChange}
-            id="profileImage"
+            name="imageUrl"
+            onChange={e => this.handleFileUpload(e)}
+            id="imageUrl"
           />
           <br/>
           <label htmlFor="password">Password: </label>
