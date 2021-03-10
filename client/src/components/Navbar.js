@@ -20,7 +20,7 @@ export default function Navbar(props) {
         {props.user ? (
           props.user.role === 'Recruiter' ? (
             <>
-            <li><Link to='/recruiter/dashboard/:id'>Edit your profile</Link></li>
+            <li><Link to={`/recruiter/edit/${props.user._id}`}>Edit your profile</Link></li>
             <li>
               <Link to='/graduates'>View all graduates</Link>
             </li>
@@ -30,7 +30,7 @@ export default function Navbar(props) {
           </>
           ) : (
             <>
-            <li><Link to='/graduate/dashboard/:id'>Edit Graduate profile</Link></li>
+            <li><Link to={`/recruiter/edit/${props.user._id}`}>Edit Graduate profile</Link></li>
             <li>
               <Link to='/graduates'>View all graduates</Link>
             </li>

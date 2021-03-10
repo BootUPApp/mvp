@@ -2,24 +2,12 @@ import { React, useState } from 'react';
 import { Link } from 'react-router-dom';
 // import axios from 'axios';
 
-export default function Home() {
-  // const [state, setState] = useState([])
-  // console.log(state)
+const Capitalise = (str) =>{
+  return str.charAt(0).toUpperCase() + str.slice(1);
+  }
 
-  // useEffect (() => {
-  //   axios.get('/api/recruiters')
-  //   .then(response => {
-  //      console.log('Hi from axios,', response)
-  //     setState(response.data)
-  //   })
-  //   .catch(error => {
-  //     console.log(error)
-  //   })
-  // }, [])
-  // const displayRecruiters = state.map((recruiter) => {
-  //       return recruiter.username
-  //      })
-  //      console.log(state)
+export default function Home() {
+  
   return (
     <div className='Home'>
       <h1>bootUP!</h1>
@@ -31,3 +19,5 @@ export default function Home() {
     </div>
   )
 }
+
+export { Capitalise }

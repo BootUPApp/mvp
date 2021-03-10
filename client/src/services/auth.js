@@ -104,11 +104,14 @@ const loginGraduate = (username, password)  => {
 
 
 
-const logout = ()=> {
-  return axios.delete("/api/auth/logout").then(response => {
-    return response.data
-  }).catch(error => {
-    return error.response
+const logout = () => {
+  return axios
+  .delete("/api/auth/logout")
+  .then(response => {
+    return response.data;
+  })
+  .catch(error => {
+    return error.response.data
   })
 }
 
