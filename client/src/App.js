@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
+
 import Navbar from './components/Navbar';
 import Home from './components/Home';
-
 import RecruiterAccess from './components/RecruiterAccess';
 import GraduateAccess from './components/Graduate';
 import GraduateLogin from './components/GraduateLogin'

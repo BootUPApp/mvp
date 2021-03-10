@@ -178,6 +178,7 @@ req.login(user, err => {
 // Universal Logout
 router.delete('/logout', (req,res) => {
   req.logout();
+  req.session.destroy()
   res.status(200).json({
       message: "Logout successful"
   })
