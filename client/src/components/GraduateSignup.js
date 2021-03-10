@@ -203,11 +203,8 @@ class GraduateSignup extends React.Component{
             onChange={e => this.handleInputChange(e, i)}
           />
           <div className="btn-box">
-            {this.state.InputList.length !== 1 && <button
-              className="mr10"
-              onClick={(i) => this.handleRemoveClick(i)}>Remove</button>}
-            {this.state.InputList.length - 1 === i && <button onClick={this.handleAddClick}>Add another skill 
-👨‍💻</button>}
+            {this.state.InputList.length !== 1 &&  <button className="mr10" onClick={(i) => this.handleRemoveClick(i)}>Remove</button>}
+            {this.state.InputList.length - 1 === i && <button onClick={this.handleAddClick}>Add another skill 👨‍💻</button>}
           </div>
         </div>
       );
