@@ -167,8 +167,6 @@ const BarChart = () => {
 }
 */
 
-
-
     const showGraduate = selectedGraduate.map((graduate) => {
 
       const showLearning = graduate.currentlyLearning.map((learning) => {

@@ -114,6 +114,22 @@ const logout = () => {
   })
 }
 
+// const updateRecruiter = (
+//   firstname,
+//   lastname,
+//   companyname
+//   )  => {
+// return axios.put('/api/recruiter/:id', {
+//   firstname,
+//   lastname,
+//   companyname,
+// }).then(response => {
+// return response.data
+// }).catch(error => {
+// return error
+// })
+// }
+
 // const deleteUser = (props) => {
 //   const id = this.props.match.params.id
 //   axios.delete(`/api/auth/user/${id}`)
