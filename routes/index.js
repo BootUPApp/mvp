@@ -55,6 +55,8 @@ router.put("/recruiter/:id", (req,res,next) => {
   })
 })
 
+// Common we are gettting it done
+
 // DELETE Recruiter 
 router.delete("/recruiter/:id", (req,res,next) => {
   User.findByIdAndDelete(req.params.id).then(deletedRecruiter => {
