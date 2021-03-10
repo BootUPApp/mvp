@@ -30,7 +30,7 @@ export default function Navbar(props) {
           </>
           ) : (
             <>
-            <li><Link to={`/recruiter/edit/${props.user._id}`}>Edit Graduate profile</Link></li>
+            <li><Link to={`/graduate/edit/${props.user._id}`}>Edit Graduate profile</Link></li>
             <li>
               <Link to='/graduates'>View all graduates</Link>
             </li>

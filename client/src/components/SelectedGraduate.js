@@ -9,21 +9,21 @@ export default function SelectedGraduate (props) {
     const selectedGraduate = props.location.state.graduate;
     console.log('All graduates:', selectedGraduate)
     const showGraduate = selectedGraduate.map((graduate) => {
-      const showLearning = graduate.currentlyLearning.map((learning) => {
-        return(
-          learning
-        )
-      })
-      const showLanguages = graduate.languagesSpoken.map((language) => {
-        return(
-          language
-        )
-      })
-      const showSkills = graduate.skills.map((skill) => {
-        return(
-          skill.skill
-        )
-      })
+        const showLearning = graduate.currentlyLearning.map((learning) => {
+          return(
+            learning
+          )
+        })
+        const showLanguages = graduate.languagesSpoken.map((language) => {
+          return(
+            language
+          )
+        })
+        const showSkills = graduate.skills.map((skill) => {
+          return(
+            skill.skill
+          )
+        })
       if(graduate._id === paramsId){
         return(
           <div key={graduate._id}>
