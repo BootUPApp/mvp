@@ -174,6 +174,30 @@ req.login(user, err => {
   })(req, res)
 })
 
+// to delete a user
+router.delete('/user/:id', (req, res, next) => {
+  User.findByIdAndDelete(req.params.id)
+    .then(() => {
+      req.session.destroy()
+      res.status(200).json({ message: 'user deleted' })
+    })
+    .catch(err => {
+      next(err)
+    })
+});
+
+// to update a recruiter
+router.put('/recruiter/:id', (req, res, next) => {
+  const { title, description } = req.body;
+  // if we don't have {new: true} findByIdAndUpdate() will return the old version
+  User.findByIdAndUpdate(req.params.id, { title, description }, { new: true })
+    .then(user => {
+      res.status(200).json(user)
+    })
+    .catch(err => {
+      next(err)
+    })
+});
 
 // Universal Logout
 router.delete('/logout', (req,res) => {
