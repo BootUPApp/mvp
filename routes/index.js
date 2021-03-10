@@ -57,7 +57,7 @@ router.put("/recruiter/:id", (req,res,next) => {
   })
 })
 
-// Common we are gettting it done
+// Its getting done
 
 // DELETE Recruiter 
 router.delete("/recruiter/:id", (req,res,next) => {
