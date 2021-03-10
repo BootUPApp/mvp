@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
+
 import Navbar from './components/Navbar';
 import Home from './components/Home';
-
 import RecruiterAccess from './components/RecruiterAccess';
 import GraduateAccess from './components/Graduate';
 import GraduateLogin from './components/GraduateLogin'
@@ -15,6 +15,7 @@ import SelectedGraduate from './components/SelectedGraduate'
 import ProtectedRoute from './components/ProtectedRoute'
 import RecruiterDashboard from './components/RecruiterDashboard'
 import GraduateDashboard from './components/RecruiterDashboard'
+import RecruiterEdit from './components/RecruiterEdit'
 
 
 class App extends React.Component {
@@ -86,6 +87,18 @@ setUser = user => {
           exact path='/graduates/:id'
           user={this.state.user}
           component={SelectedGraduate}
+          redirectPath='/recruiter/login'
+        />
+        <ProtectedRoute
+          exact path='/recruiter/edit/:id'
+          user={this.state.user}
+          component={RecruiterEdit}
+          redirectPath='/recruiter/login'
+        />
+        <ProtectedRoute
+          exact path='/graduate/edit/:id'
+          user={this.state.user}
+          component={RecruiterEdit}
           redirectPath='/recruiter/login'
         />
       </Switch> 

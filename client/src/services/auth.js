@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { relativeTimeRounding } from 'moment';
 
 const signupRecruiter = (
       firstname,
@@ -102,15 +103,30 @@ const loginGraduate = (username, password)  => {
 }
 
 
-
-
-const logout = ()=> {
-  return axios.delete("/api/auth/logout").then(response => {
-    return response.data
-  }).catch(error => {
-    return error.response
+const logout = () => {
+  return axios
+  .delete("/api/auth/logout")
+  .then(response => {
+    return response.data;
+  })
+  .catch(error => {
+    return error.response.data
   })
 }
 
+// const deleteUser = (props) => {
+//   const id = this.props.match.params.id
+//   axios.delete(`/api/auth/user/${id}`)
+//     .then(() => {
+//       // we want to redirect to the home page
+//       this.props.history.push('/')
+//     })
+//     .catch(err => {
+//       console.log(err)
+//     })
+//     // .then(() => {
+//     //   window.location.reload()
+//     // })
+// }
 
 export {signupRecruiter,signupGraduate,loginRecruiter,loginGraduate,logout}

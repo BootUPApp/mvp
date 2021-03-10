@@ -170,6 +170,7 @@ const BarChart = () => {
 
 
     const showGraduate = selectedGraduate.map((graduate) => {
+
       const showLearning = graduate.currentlyLearning.map((learning) => {
         return(
           learning
@@ -185,6 +186,8 @@ const BarChart = () => {
           skill.skill
         )
       })
+
+      
       if(graduate._id === paramsId){
         return(
           <div key={graduate._id}>
