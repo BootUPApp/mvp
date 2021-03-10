@@ -40,13 +40,11 @@ router.get("/recruiter/:id", (req,res, next) => {
 // PUT Recruiter  - Update Profile / Insomnia Test x
 router.put("/recruiter/:id", (req,res,next) => {
   User.findByIdAndUpdate(req.params.id, {
-    firstName: req.body.firstName,
-    secondName: req.body.secondName,
-    imgPath: req.file.path,
-    imgName:req.file.originalname,
-    publicId: req.file.filename,
+    firstName: req.body.firstname,
+    lastName: req.body.lastname,
+    imageUrl: req.body.imageUrl,
     emailAddress: req.body.emailAddress,
-    companyName: req.body.companyName, 
+    companyName: req.body.companyname, 
     username: req.body.username
   }, 
   {new: true})

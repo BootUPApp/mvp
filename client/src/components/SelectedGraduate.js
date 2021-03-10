@@ -5,9 +5,9 @@ import Moment from 'react-moment';
 
 export default function SelectedGraduate (props) {
     const paramsId = props.match.params.id
-    console.log('Hey I am the ID', paramsId)
+    // console.log('Hey I am the ID', paramsId)
     const selectedGraduate = props.location.state.graduate;
-    console.log('All graduates:', selectedGraduate)
+    // console.log('All graduates:', selectedGraduate)
     const showGraduate = selectedGraduate.map((graduate) => {
         const showLearning = graduate.currentlyLearning.map((learning) => {
           return(

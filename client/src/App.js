@@ -92,6 +92,8 @@ setUser = user => {
         <ProtectedRoute
           exact path='/recruiter/edit/:id'
           user={this.state.user}
+          setUser={this.setUser}
+          // render={props => <RecruiterEdit setUser={this.setUser} user={this.state.user} {...props} />}
           component={RecruiterEdit}
           redirectPath='/recruiter/login'
         />
