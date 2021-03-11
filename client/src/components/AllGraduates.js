@@ -106,10 +106,7 @@ handlerUserShit(wholeUserResponse) {
                }
               }}>{graduate.firstName} {graduate.lastName}</Link>
 
-
-
-
-</div>
+              </div>
           </div>
           
           )
@@ -129,7 +126,10 @@ handlerUserShit(wholeUserResponse) {
                       value={this.state.query}
                       onChange={this.handleChange}
                       />
+           
+          
             </form>
+
             <div className='Filters'>
               <h2>Filters</h2>
               <h3>Industries</h3>
