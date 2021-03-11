@@ -7,21 +7,36 @@ class AllGraduates extends React.Component {
   
   state = {
     users: [],
-    query: ''
+    query: '',
+    actualUsers:""
   }
 
   componentDidMount() {
-    axios.get('/api/graduates')
-    .then(response => {
-       console.log('Hi from axios,', response)
-      this.setState({
-        users: response.data
-      })
-    })
-    .catch(error => {
-      console.log(error)
-    })
+    this.sendGetRequest()
+    // axios.get('/api/graduates')
+    // .then(response => {
+    //    console.log('Hi from axios,', response.data)
+       
+    //   this.setState({
+    //     users: response.data
+    //   })
+    // })
+    // .catch(error => {
+    //   console.log(error)
+    // })
   }
+
+ async sendGetRequest () {
+  const request = await axios.get('/api/graduates')
+  const response = await request.data
+  this.setState({users: response})
+  console.log(this.state.users, "state after request inside of function")
+const fucker =   this.handlerUserShit(response)
+this.setState({
+  actualUsers: fucker
+})
+console.log(this.state.actualUsers, "actualusers in funcrion")
+}
 
   handleChange = event => {
     console.log(event.target.value)
@@ -31,10 +46,43 @@ class AllGraduates extends React.Component {
     }))
   }
 
+handlerUserShit(wholeUserResponse) {
+  let list;
+ for (let user of wholeUserResponse ) {
+    list += user
+    
+ }
+ console.log(list, "list at outside function")
+}
+
+
  // style={{backgroundImage: `url("${graduate.imageUrl}")`}}
 
        render(){
-        console.log('All graduates:', this.state.users)
+
+      //   if(this.state.actualUsers.length !== 0) {
+      //  const inPutList =   this.state.actualUsers.map((user, index) => {
+      //       return user.InputList
+      //     })
+      //     let skills = inPutList.map((skill, index) => {
+      //       return <h1>{skill.skill}</h1>
+      //     })
+      //   }
+       
+        console.log(this.state.users, "state after render")
+
+        
+        const getSkillsArray = this.state.users.map((grads,index) => {
+            return grads.InputList;
+        })
+
+        console.log('Hi its me', )
+
+        const getDeeperInside = getSkillsArray.map((grads, index)=> {
+          return grads[index]
+        })
+
+        console.log(getDeeperInside)
 
         let searchResults = this.state.users.filter((graduate) => {
           return graduate.firstName.toLowerCase().includes(this.state.query) ||
@@ -44,14 +92,7 @@ class AllGraduates extends React.Component {
         
         let displayGraduates = searchResults.map(graduate => {
 
-          new hoverEffect({
-            parent: document.querySelector(".gradPics"),
-            intensity: 0.3,
-            image1: "`${graduate.imageUrl}`",
-            image2: "`${graduate.imageUrl}`",
-            displacementImage:
-              "https://raw.githubusercontent.com/robin-dela/hover-effect/master/images/fluid.jpg"
-          });
+      
 
           return(
        

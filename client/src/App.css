@@ -340,11 +340,15 @@ height: 100vh;
 	margin-top: 40px;
 }
 
-.gitHubPlaceHolderImage{
-	width: 90%;
-	margin: 0 auto;
-height: 40vh;
-	background-image: url("./images/githubImage.png");
-	background-size: cover;
-	background-position: center;
+
+
+.selectButton{
+	width: 90vw;
+margin-top: 150px;
+margin-bottom: 150px;
+}
+
+.selectButton button{
+	border: none;
+	border-radius: 5px;
 }

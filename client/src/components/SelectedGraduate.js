@@ -3,8 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import Moment from 'react-moment';
 import { Radar, defaults } from 'react-chartjs-2'
 import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+import { FaGithub, FaLinkedinIn, FaMediumM, FaRedditAlien } from "react-icons/fa"
 
 
 defaults.global.tooltips.enabled = false
@@ -27,14 +26,19 @@ const getSelectedGraduate =  props.location.state.graduate.filter(elGraduate => 
         return elGraduate._id === paramsId
 })
 
+console.log(getSelectedGraduate);
+
 const skillDataArryfied = getSelectedGraduate.map((elGraduate) => {
     return elGraduate.InputList
 });
+
+console.log(skillDataArryfied);
 
 const skillDataObjectArray = skillDataArryfied[0]
 const skillDataKeys = skillDataObjectArray.map((skillnames) => {
         return skillnames.skill
 }) // Array
+
 
 const skillDataValues = skillDataObjectArray.map((skillnames) => {
   return skillnames.rating
@@ -127,7 +131,7 @@ const showFirstLastName =  selectedGraduate.map((elGraduate) => {
       return(
         <div className='nameDetails'>
           <h1>{elGraduate.firstName} <br/> {elGraduate.lastName}</h1>
-          <h2>"{elGraduate.catchphrase} Battle Cry Hard Coded"</h2>
+          <h2>"{elGraduate.catchphrase}"</h2>
         </div>
       )
   }
@@ -146,18 +150,18 @@ const showIndusty = selectedGraduate.map((elGraduate) => {
         </div>
         <div>
               <h1>Languages</h1>
-              <h2>        
+              <h2 style={{display:'flex', flexDirection: 'column'}}>        
               {elGraduate.languagesSpoken}
               </h2>
               </div>
 
               <div>
                 <h1>Currently Learning</h1>
-                <h2>{elGraduate.currentlyLearning}</h2>
+                <h2 style={{display: 'flex', flexDirection:'column'}}>{elGraduate.currentlyLearning}</h2>
         </div>
         <div style={{height:`50vh`}}>
               <h1>Me as a gif</h1>
-             <img src="https://media.giphy.com/media/Q61LJj43H48z1FIK4X/giphy.gif"/>
+             <img src={elGraduate.myGif}/>
               </div>
 
           
@@ -168,31 +172,32 @@ const showIndusty = selectedGraduate.map((elGraduate) => {
   }
 })
 
+
+
+
 const madonna = selectedGraduate.map((elGraduate) => {
+
+
   if(elGraduate._id === paramsId){
       return(
         <div className="madonna">
 
         <div>
-                <h1>Industry</h1>
-                <h2>{elGraduate.yearsInIndustry} Years experience in {elGraduate.industry}</h2>
+                <h1>Links</h1>
+                  <h1>
+                  <Link to={elGraduate.githubProfile}><FaGithub /></Link> &nbsp;&nbsp; 
+                  <Link to={elGraduate.linkedInProfile}><FaLinkedinIn /></Link> <br></br>
+                  <Link to={elGraduate.mediumProfile}><FaMediumM />  </Link>&nbsp;&nbsp; 
+                  <Link to={elGraduate}><FaRedditAlien /></Link>
+                  </h1>
         </div>
         <div>
-              <h1>Languages</h1>
-              <h2>        
-              {elGraduate.languagesSpoken}
-              </h2>
+              <h1>Location</h1>
+              <h2>{elGraduate.bootCampCity}</h2>
+              <h2>Bootcamp: {elGraduate.bootCampName}</h2>
               </div>
 
-              <div>
-                <h1>Currently Learning</h1>
-                <h2>{elGraduate.currentlyLearning}</h2>
-        </div>
-        <div>
-              <h1>Me as a gif</h1>
-             <img src="https://media.giphy.com/media/Q61LJj43H48z1FIK4X/giphy.gif"/>
-              </div>
-
+            
           
 
         </div>
@@ -201,6 +206,16 @@ const madonna = selectedGraduate.map((elGraduate) => {
   }
 })
 
+
+const showButton =  selectedGraduate.map((graduate) => {
+  if(graduate._id === paramsId){
+      return(
+        <div className="selectButton" style={{display:'flex', justifyContent:'center'}}>
+          <a href={"mailto:" + graduate.emailAddress}><button><h1>Contact</h1></button></a>
+        </div>
+      )
+  }
+})
 
 
     const showGraduate = selectedGraduate.map((graduate) => {
@@ -258,8 +273,8 @@ const madonna = selectedGraduate.map((elGraduate) => {
          <h1 style={{marginLeft: `80px`}}>My GitHub</h1>
          <div className="gitHubPlaceHolderImage"></div>
          {madonna}
-        
-
+        {showButton}
+         
       
 
       </div>

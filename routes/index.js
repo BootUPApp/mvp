@@ -74,7 +74,7 @@ router.delete("/recruiter/:id", (req,res,next) => {
 // Get Graduates / Insomnia Test x
 router.get("/graduates", (req,res,next) => {
   User.find({role: 'Graduate'}).then(graduatesFromDB => {
-        res.status(200).json(graduatesFromDB);
+        res.send(graduatesFromDB);
       }).catch(error => {
         next(error);  
       })
