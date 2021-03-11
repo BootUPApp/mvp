@@ -11,6 +11,10 @@ class AllGraduates extends React.Component {
     actualUsers:""
   }
 
+  Capitalise = (str) =>{
+    return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
   componentDidMount() {
     this.sendGetRequest()
     // axios.get('/api/graduates')
@@ -104,7 +108,7 @@ handlerUserShit(wholeUserResponse) {
              state: {
                 graduate: this.state.users
                }
-              }}>{graduate.firstName} {graduate.lastName}</Link>
+              }}>{this.Capitalise(graduate.firstName)} {this.Capitalise(graduate.lastName)}</Link>
 
               </div>
           </div>
@@ -115,7 +119,7 @@ handlerUserShit(wholeUserResponse) {
 
 
         return (
-          <div className='Home'>
+          <div className='allGraduates'>
             <h1>All Graduates</h1>
             <form>
             <label htmlFor="query">Search: </label>
@@ -126,7 +130,7 @@ handlerUserShit(wholeUserResponse) {
                       value={this.state.query}
                       onChange={this.handleChange}
                       />
-           
+
           
             </form>
 

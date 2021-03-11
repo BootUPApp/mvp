@@ -409,6 +409,7 @@ margin-bottom: 150px;
 
 
 
+
 .recruiterAccess{
 	display: flex;
 	justify-content: center;
@@ -428,4 +429,15 @@ margin-bottom: 150px;
 
 .recruiterAccess button h1 {
 	color: white;
+
+.allGraduates {
+	padding-left: 80px;
+}
+
+.graduateProfile {
+	padding-left: 80px;
+}
+
+.accessPage {
+	padding-left: 80px;
 }

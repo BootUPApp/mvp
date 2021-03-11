@@ -175,22 +175,20 @@ class GraduateEdit extends React.Component{
 
     // console.log(this.props.user)
     return (
-      <div>
+      <div className='graduateProfile'>
         <h1>Update {this.props.user.username}'s profile, </h1>
       
       <form onSubmit={this.handleSubmit}>
-      <span className="input input--hoshi">
+      <label htmlFor="firstname">First name</label>
           <input
-          className="input__field input__field--hoshi"
             type="text"
             name="firstname"
             value={this.state.firstname}
             onChange={this.handleChange}
             id="firstname"
           />
-          <label htmlFor="firstname" className="input__label input__label--hoshi"><span className="input__label-content input__label-content--hoshi">Firstname</span> </label>
-    </span>
-    <label htmlFor="lastname">lastname: </label>
+          <br/>
+    <label htmlFor="lastname">Last name: </label>
           <input
             type="text"
             name="lastname"

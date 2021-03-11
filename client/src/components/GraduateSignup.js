@@ -211,7 +211,7 @@ class GraduateSignup extends React.Component{
     })
     
   return (
-    <div>
+    <div className='accessPage'>
       <h1>Graduate Signup</h1>
       <form onSubmit={this.handleSubmit}>
           <label htmlFor="firstName">First name: </label>

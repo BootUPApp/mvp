@@ -136,7 +136,7 @@ class RecruiterEdit extends React.Component{
             onChange={this.handleChange}
             id="username"
           />
-          <br/>
+          {/* <br/>
           <label htmlFor="password">Password: </label>
           <input
             type="password"
@@ -145,7 +145,7 @@ class RecruiterEdit extends React.Component{
             value={this.state.password}
             onChange={this.handleChange}
             id="password"
-          />
+          /> */}
           <br/>
           <button type="submit">Submit changes</button>
           {this.state.message && (

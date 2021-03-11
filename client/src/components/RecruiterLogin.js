@@ -44,7 +44,7 @@ class RecruiterLogin extends React.Component {
   render(){
 
   return (
-    <div>
+    <div className='accessPage'>
       <h1>Recruiter Login</h1>
       <form onSubmit={this.handleSubmit}>
         <label htmlFor="username">Username: </label>
