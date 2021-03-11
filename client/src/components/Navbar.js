@@ -9,7 +9,7 @@ const handleLogout = props => {
 }
 
 export default function Navbar(props) {
-  console.log(props.user)
+  // console.log(props.user)
   return (
     <div>
       <ul>

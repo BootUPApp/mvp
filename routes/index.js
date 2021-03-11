@@ -44,7 +44,7 @@ router.put("/recruiter/:id", (req,res,next) => {
     lastName: req.body.lastname,
     imageUrl: req.body.imageUrl,
     emailAddress: req.body.emailAddress,
-    companyName: req.body.companyname, 
+    companyname: req.body.companyname, 
     username: req.body.username
   }, 
   {new: true})

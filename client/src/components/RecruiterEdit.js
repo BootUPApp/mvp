@@ -73,7 +73,7 @@ class RecruiterEdit extends React.Component{
           // the response from the server is a user object -> signup was successful
           // we want to put the user object in the state of App.js
           
-          console.log(user);
+          // console.log(user);
           this.setState({message: ''})
 
           this.props.setUser(user);
@@ -95,7 +95,7 @@ class RecruiterEdit extends React.Component{
             type="text"
             name="firstname"
             defaultValue={this.props.user.firstName}
-            value={this.state.firstName}
+            // value={this.state.firstName}
             onChange={this.handleChange}
             id="firstname"
           />
@@ -106,7 +106,7 @@ class RecruiterEdit extends React.Component{
             type="text"
             name="lastname"
             defaultValue={this.props.user.lastName}
-            value={this.state.lastName}
+            // value={this.props.user.lastName}
             onChange={this.handleChange}
             id="lastname"
           />
@@ -116,8 +116,8 @@ class RecruiterEdit extends React.Component{
         <input
           type="companyname"
           name="companyname"
-          value={this.state.companyname}
           defaultValue={this.props.user.companyname}
+          // value={this.state.companyname}
           onChange={this.handleChange}
           id="companyname"/>
           <br/>
