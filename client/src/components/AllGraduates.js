@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import hoverEffect from 'hover-effect'
 
 class AllGraduates extends React.Component {
   
@@ -30,6 +31,8 @@ class AllGraduates extends React.Component {
     }))
   }
 
+ // style={{backgroundImage: `url("${graduate.imageUrl}")`}}
+
        render(){
         console.log('All graduates:', this.state.users)
 
@@ -40,16 +43,34 @@ class AllGraduates extends React.Component {
             })
         
         let displayGraduates = searchResults.map(graduate => {
+
+          new hoverEffect({
+            parent: document.querySelector(".gradPics"),
+            intensity: 0.3,
+            image1: "`${graduate.imageUrl}`",
+            image2: "`${graduate.imageUrl}`",
+            displacementImage:
+              "https://raw.githubusercontent.com/robin-dela/hover-effect/master/images/fluid.jpg"
+          });
+
           return(
-            <div key={graduate._id}>
+       
+            <div className="allgrads" key={graduate._id}>
+              <div className='gradPics' style={{backgroundImage: `url("${graduate.imageUrl}")`}}></div>
+              <div>
              <Link to={{
                pathname: `/graduates/${graduate._id}`,
              state: {
                 graduate: this.state.users
                }
               }}>{graduate.firstName} {graduate.lastName}</Link>
-             <br/>
+
+
+
+
+</div>
           </div>
+          
           )
          })
 
@@ -74,10 +95,10 @@ class AllGraduates extends React.Component {
               <h3>Skills</h3>
               <h3>Learning</h3>
             </div>
-            <div className='Graduates'>
-              <h2>Search results</h2>
-              <h2>{displayGraduates}</h2>
-            </div>
+          
+              <div className="meso">
+              {displayGraduates}
+              </div> 
           </div>
         )
        }

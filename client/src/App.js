@@ -16,6 +16,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import RecruiterDashboard from './components/RecruiterDashboard'
 import GraduateDashboard from './components/RecruiterDashboard'
 import RecruiterEdit from './components/RecruiterEdit'
+import TestComponent from './components/TestComponent'
 
 
 class App extends React.Component {
@@ -41,6 +42,13 @@ setUser = user => {
           exact path='/'
           component={Home}
           />
+
+           <Route
+          exact path='/testComponent'
+          component={TestComponent}
+          />
+
+
         <Route
           exact path='/recruiter'
           component={RecruiterAccess}
