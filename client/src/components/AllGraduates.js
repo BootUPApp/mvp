@@ -126,9 +126,7 @@ handlerUserShit(wholeUserResponse) {
                       value={this.state.query}
                       onChange={this.handleChange}
                       />
-<<<<<<< HEAD
-           
-=======
+
             {/* <div className='keywordSearch'>
 
             <h2>Industries</h2>
@@ -147,7 +145,6 @@ handlerUserShit(wholeUserResponse) {
             <a onClick={this.handleClick}>Handlebars</a>
 
             </div> */}
->>>>>>> adam20
           
             </form>
 
