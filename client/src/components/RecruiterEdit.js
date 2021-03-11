@@ -27,16 +27,18 @@ class RecruiterEdit extends React.Component{
       // })
   }
 
-  updateRecruiter = (firstname,
+  updateRecruiter = (
+    firstname,
     lastname,
-    companyname) => {
+    companyname,
+    username) => {
     const id = this.props.match.params.id
     return axios.put(`/api/recruiter/${id}`, {
     firstname,
     lastname,
     companyname,
-    imageUrl: this.props.user.imageUrl,
-    username: this.props.user.username
+    username,
+    imageUrl: this.props.user.imageUrl
   }).then(response => {
   return response.data
   }).catch(error => {

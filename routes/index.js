@@ -39,12 +39,12 @@ router.get("/recruiter/:id", (req,res, next) => {
 
 // PUT Recruiter  - Update Profile / Insomnia Test x
 router.put("/recruiter/:id", (req,res,next) => {
-  console.log(req.body, "this is the biody")
+  console.log(req.body, "this is the body")
   User.findByIdAndUpdate(req.params.id, {
     firstName: req.body.firstname,
     lastName: req.body.lastname,
     imageUrl: req.body.imageUrl,
-    emailAddress: req.body.emailAddress,
+    emailAddress: req.body.emailaddress,
     companyname: req.body.companyname, 
     username: req.body.username
   }, 
@@ -89,67 +89,32 @@ router.get("/graduates/:id", (req,res,next) => {
   })
 })
 
-// POST Graduate / Insomnia Test X
-
-router.post("/graduate/signup", uploader.single('photo'), (req,res,next) => {
-  const {firstName, lastName, username, catchphrase,bootCampGraduation,emailAddress, password, bootCampName, bootCampCity, industry, yearsInIndustry, languagesSpoken,currentlyLearning, myGif, githubUsername, githubProfile,linkedInProfile, mediumProfile} = req.body;  // **! BE Mindful Imagefile probably needs to be a req.file
-  User.create({
-    firstName,
-    lastName, 
-    username, 
-   imgPath: req.file.path,
-    imgName:req.file.originalname,
-    publicId: req.file.filename,
-    catchphrase,
-    bootCampGraduation,
-    emailAddress, 
-    password, 
-    bootCampName, 
-    bootCampCity, 
-    skills:[{ skill: req.body.skill, rating: req.body.rating}],
-    industry, 
-    yearsInIndustry, 
-    languagesSpoken,
-    currentlyLearning, 
-    myGif, 
-    githubUsername, 
-    githubProfile,
-    linkedInProfile, 
-    mediumProfile, 
-  }).then(sendGradToDB => {
-    res.status(201).json(sendGradToDB)
-  }).catch(error => {
-    next(error);
-  })
-})
-
-
 // PUT Graduate / Insomnia Test X
 router.put("/graduates/:id", uploader.single('photo'), (req, res, next) => {
-  const {firstName, lastName, username, catchphrase,bootCampGraduation,emailAddress, password, bootCampName, bootCampCity, industry, yearsInIndustry, languagesSpoken,currentlyLearning, myGif, githubUsername, githubProfile,linkedInProfile, mediumProfile} = req.body;  // **! BE Mindful Imagefile probably needs to be a req.file
+  // const {firstName, lastName, username, catchphrase, bootCampGraduation,emailAddress, password, bootCampName, bootCampCity, industry, yearsInIndustry, languagesSpoken,currentlyLearning, myGif, githubUsername, githubProfile,linkedInProfile, mediumProfile} = req.body;  // **! BE Mindful Imagefile probably needs to be a req.file
   User.findByIdAndUpdate(req.params.id,{
-    firstName,
-    lastName, 
-    username, 
-    imgPath: req.file.path,
-    imgName:req.file.originalname,
-    publicId: req.file.filename,
-    catchphrase,
-    bootCampGraduation,
-    emailAddress, 
-    password, 
-    bootCampName, 
-    bootCampCity, 
-    skills:[{ skill: req.body.skill, rating: req.body.rating}],
-    industry, 
-    yearsInIndustry, 
-    languagesSpoken,
-    currentlyLearning, 
-    myGif, 
-    githubUsername, 
-    githubProfile,
-    linkedInProfile, 
-    mediumProfile, 
+    firstName: req.body.firstname, 
+    lastName: req.body.lastname,
+    username: req.body.username,
+    // imgPath: req.file.path,
+    // imgName:req.file.originalname,
+    // publicId: req.file.filename,
+    catchphrase: req.body.catchphrase,
+    bootCampGraduation: req.body.bootCampGraduation,
+    emailAddress: req.body.emailaddress, 
+    // password, 
+    // bootCampName, 
+    // bootCampCity, 
+    InputList: req.body.InputList,
+    // industry, 
+    // yearsInIndustry, 
+    // languagesSpoken,
+    currentlyLearning: req.body.currentlyLearning, 
+    // myGif, 
+    // githubUsername, 
+    githubProfile: req.body.githubProfile,
+    linkedInProfile: req.body.linkedInProfile, 
+    // mediumProfile: req.body.mediumProfile 
   }, {new: true}).then(sendGradToDB => {
     res.status(201).json(sendGradToDB)
   }).catch(error => {
