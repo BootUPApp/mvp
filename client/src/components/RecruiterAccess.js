@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function Recruiter() {
   return (
-    <div>
+    <div className='accessPage'>
       <h1>Recruiter access</h1>
       <Link to={'/recruiter/login'}>Login</Link>
       <br/>
