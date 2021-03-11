@@ -1,6 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
+// const Capitalise = (str) =>{
+//   return str.charAt(0).toUpperCase() + str.slice(1);
+//   }
 
 export default function RecruiterDashboard(props) {
   console.log(props.user)

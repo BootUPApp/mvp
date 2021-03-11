@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function Graduate() {
   return (
-    <div>
+    <div className='accessPage'>
       <h1>Graduate access</h1>
       <Link to={'/graduate/login'}>Login</Link>
       <br/>

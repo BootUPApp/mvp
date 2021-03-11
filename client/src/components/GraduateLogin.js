@@ -42,7 +42,7 @@ class GraduateLogin extends React.Component {
   render(){
 
   return (
-    <div>
+    <div className='accessPage'>
       <h1>Graduate Login</h1>
       <form onSubmit={this.handleSubmit}>
         <label htmlFor="username">Username: </label>
