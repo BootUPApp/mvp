@@ -4,12 +4,12 @@ import axios from 'axios';
 class RecruiterEdit extends React.Component{
 
   state = {
-    username: '',
-    password: '',
+    username: this.props.user.username,
+    password: this.props.user.password,
     message: '',
-    companyname:'',
-    firstname:'',
-    lastname: ''
+    companyname:this.props.user.companyname,
+    firstname:this.props.user.firstName,
+    lastname: this.props.user.lastName
   }
 
   deleteUser = (props) => {
@@ -57,12 +57,16 @@ class RecruiterEdit extends React.Component{
     const {
       firstname,
       lastname,
-      companyname 
+      companyname,
+      username,
+      password 
        } = this.state;
     this.updateRecruiter(
       firstname,
       lastname,
-      companyname
+      companyname,
+      username,
+      password
       )
       .then(user => {
         if (user.message) {
@@ -76,8 +80,8 @@ class RecruiterEdit extends React.Component{
           // console.log(user);
           this.setState({message: ''})
 
-          this.props.setUser(user);
-          this.props.history.push(`/graduate/dashboard/${user._id}`)
+          // this.props.setUser(user);
+          this.props.history.push(`/recruiter/dashboard/${user._id}`)
         }
       })
   }
@@ -94,32 +98,52 @@ class RecruiterEdit extends React.Component{
           className="input__field input__field--hoshi"
             type="text"
             name="firstname"
-            defaultValue={this.props.user.firstName}
-            // value={this.state.firstName}
+            // defaultValue={this.props.user.firstName}
+            value={this.state.firstname}
             onChange={this.handleChange}
             id="firstname"
           />
           <label htmlFor="firstname" className="input__label input__label--hoshi"><span className="input__label-content input__label-content--hoshi">Firstname</span> </label>
     </span>
-<label htmlFor="lastname">lastname: </label>
+    <label htmlFor="lastname">lastname: </label>
           <input
             type="text"
             name="lastname"
-            defaultValue={this.props.user.lastName}
-            // value={this.props.user.lastName}
+            // defaultValue={this.props.user.lastName}
+            value={this.state.lastname}
             onChange={this.handleChange}
             id="lastname"
           />
           <br/>
 
-<label htmlFor="companyname">Company name: </label>
+    <label htmlFor="companyname">Company name: </label>
         <input
           type="companyname"
           name="companyname"
-          defaultValue={this.props.user.companyname}
-          // value={this.state.companyname}
+          // defaultValue={this.props.user.companyname}
+          value={this.state.companyname}
           onChange={this.handleChange}
           id="companyname"/>
+          <br/>
+    <label htmlFor="username">Username: </label>
+          <input
+            type="text"
+            name="username"
+            // defaultValue={this.props.user.lastName}
+            value={this.state.username}
+            onChange={this.handleChange}
+            id="username"
+          />
+          <br/>
+          <label htmlFor="password">Password: </label>
+          <input
+            type="password"
+            name="password"
+            // defaultValue={this.props.user.lastName}
+            value={this.state.password}
+            onChange={this.handleChange}
+            id="password"
+          />
           <br/>
           <button type="submit">Submit changes</button>
           {this.state.message && (
@@ -128,7 +152,7 @@ class RecruiterEdit extends React.Component{
       </form>
 
 
-        <button onClick={this.deleteUser}>Delete this profile</button>
+        <button onClick={this.deleteUser}>Delete {this.props.user.username}'s profile</button>
       </div>
     )
   }

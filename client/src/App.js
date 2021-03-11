@@ -16,6 +16,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import RecruiterDashboard from './components/RecruiterDashboard'
 import GraduateDashboard from './components/RecruiterDashboard'
 import RecruiterEdit from './components/RecruiterEdit'
+import GraduateEdit from './components/GraduateEdit'
 import TestComponent from './components/TestComponent'
 
 
@@ -108,8 +109,9 @@ setUser = user => {
         <ProtectedRoute
           exact path='/graduate/edit/:id'
           user={this.state.user}
-          component={RecruiterEdit}
-          redirectPath='/recruiter/login'
+          setUser={this.setUser}
+          component={GraduateEdit}
+          redirectPath='/graduate/login'
         />
       </Switch> 
     </div>

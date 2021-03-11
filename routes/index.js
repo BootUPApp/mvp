@@ -39,6 +39,7 @@ router.get("/recruiter/:id", (req,res, next) => {
 
 // PUT Recruiter  - Update Profile / Insomnia Test x
 router.put("/recruiter/:id", (req,res,next) => {
+  console.log(req.body, "this is the biody")
   User.findByIdAndUpdate(req.params.id, {
     firstName: req.body.firstname,
     lastName: req.body.lastname,
