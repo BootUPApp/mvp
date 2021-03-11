@@ -11,7 +11,7 @@ const handleLogout = props => {
 export default function Navbar(props) {
   // console.log(props.user)
   return (
-    <div>
+    <nav>
       <ul>
         <li>
           <Link to='/'>Home</Link>
@@ -51,6 +51,6 @@ export default function Navbar(props) {
             </>
           )}
       </ul>
-    </div>
+    </nav>
   )
 }
