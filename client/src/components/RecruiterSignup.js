@@ -87,7 +87,7 @@ class RecruiterSignup extends React.Component{
   render() {
     console.log()
     return (
-      <div>
+      <div className="recSignUpFrame">
         <h1>Recruiter Signup</h1>
       
         <form onSubmit={this.handleSubmit}>

@@ -16,6 +16,7 @@ export default function Home() {
       <Link to={'/recruiter'}>Recruiter entrance</Link>
       <br />
       <Link to={'/graduate'}>Graduate entrance</Link>
+      <Link to={'/testComponent'}>Test Component</Link>
     </div>
   )
 }

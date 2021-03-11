@@ -226,3 +226,35 @@ width: 100vw;
 height: 100vh;
 	background-size: cover;
 }
+
+/*  Rec Sign Up Frame*/
+.recSignUpFrame{
+	display:  flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.recSignUpFrame form{
+	display:  flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.meso{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+}
+
+
+.allgrads{
+	padding: 20px;
+	margin: 10px;
+}	
+
+.allgrads .gradPics{
+	padding: 150px;
+	background-size: cover;
+}
