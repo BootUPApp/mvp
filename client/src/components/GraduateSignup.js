@@ -302,7 +302,7 @@ class GraduateSignup extends React.Component{
             id="bootCampGraduation"
           />
           <br/>
-          <label htmlFor="skill">Skill: </label>
+          {/* <label htmlFor="skill">Skill: </label>
           <input
             type="text"
             name="skill"
@@ -322,11 +322,9 @@ class GraduateSignup extends React.Component{
             <option value="3">3 – intermediate</option>
             <option value="4">4</option>
             <option value="5">5 – ninja</option>
-          </select>
+          </select> */}
           <br/>
           {renderNewForm}
-          <br/>
-          <button onClick={this.toggleAnoterSkillField}>Add another Skill 📊</button>
           <br/>
           <label htmlFor="currentlyLearning">Currently learning: </label>
           <input

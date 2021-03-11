@@ -6,7 +6,7 @@ class GraduateEdit extends React.Component{
   state = {
     username: this.props.user.username,
     password: this.props.user.password,
-    firstname:this.props.user.firstName,
+    firstname: this.props.user.firstName,
     lastname: this.props.user.lastName,
     catchphrase: this.props.user.catchphrase,
     emailaddress: this.props.user.emailAddress,
@@ -40,19 +40,28 @@ class GraduateEdit extends React.Component{
       // })
   }
 
-  updateRecruiter = (firstname,
-    lastname,
-    companyname,
-    username,
-    password) => {
-    const id = this.props.match.params.id
-    return axios.put(`/api/recruiter/${id}`, {
+  updateRecruiter = (
     firstname,
     lastname,
-    companyname,
     username,
-    password,
-    imageUrl: this.props.user.imageUrl
+    emailaddress,
+    catchphrase,
+    InputList,
+    githubProfile,
+    linkedInProfile,
+    currentlyLearning
+    ) => {
+    const id = this.props.match.params.id
+    return axios.put(`/api/graduates/${id}`, {
+    firstname,
+    lastname,
+    username,
+    emailaddress,
+    catchphrase,
+    InputList,
+    githubProfile,
+    linkedInProfile,
+    currentlyLearning
   }).then(response => {
   return response.data
   }).catch(error => {
@@ -73,16 +82,24 @@ class GraduateEdit extends React.Component{
     const {
       firstname,
       lastname,
-      companyname,
       username,
-      password 
+      emailaddress,
+      catchphrase,
+      InputList,
+      githubProfile,
+      linkedInProfile,
+      currentlyLearning 
        } = this.state;
     this.updateRecruiter(
       firstname,
       lastname,
-      companyname,
       username,
-      password
+      emailaddress,
+      catchphrase,
+      InputList,
+      githubProfile,
+      linkedInProfile,
+      currentlyLearning
       )
       .then(user => {
         if (user.message) {
@@ -102,8 +119,61 @@ class GraduateEdit extends React.Component{
       })
   }
 
+  // handle input change
+ handleInputChange = (e, index) => {
+  const { name, value } = e.target;
+  const list = [...this.state.InputList];
+  list[index][name] = value;
+  this.setState({
+    InputList: list
+  })
+};
+ 
+// handle click event of the Remove button
+ handleRemoveClick = (index) => {
+  const list = [...this.state.InputList];
+  list.splice(index, 1);
+  this.setState((state,props) => ({
+    inputList: state.list
+  }))
+};
+ 
+
+
+// handle click event of the Add button
+ handleAddClick = () => {
+  this.setState({
+    InputList: [...this.state.InputList, { skill: "", rating: "" }]
+  })
+};
+
   render() {
-    console.log(this.props.user)
+
+    const renderNewForm = this.state.InputList.map((x, i) => {
+      return (
+        <div className="skill" key={this.props.user._id}>
+          <input
+            name="skill"
+  placeholder="Enter Your Skill"
+            value={x.skill}
+            onChange={e => this.handleInputChange(e, i)}
+          />
+          <input
+            className="skill"
+            name="rating"
+  placeholder="Rate your Skill 1-5"
+            value={x.rating}
+            onChange={e => this.handleInputChange(e, i)}
+          />
+          <div className="btn-box">
+            {this.state.InputList.length !== 1 &&  <button className="mr10" onClick={(i) => this.handleRemoveClick(i)}>Remove</button>}
+            {this.state.InputList.length - 1 === i && <button onClick={this.handleAddClick}>Add another skill 👨‍💻</button>}
+          </div>
+        </div>
+      );
+    })
+
+    // console.log(this.props.user)
     return (
       <div>
         <h1>Update {this.props.user.username}'s profile, </h1>
@@ -129,15 +199,19 @@ class GraduateEdit extends React.Component{
             id="lastname"
           />
           <br/>
-
-    <label htmlFor="companyname">Company name: </label>
-        <input
-          type="companyname"
-          name="companyname"
-          value={this.state.companyname}
-          onChange={this.handleChange}
-          id="companyname"/>
+    <label htmlFor="InputList">Update your skills: </label>
+          {renderNewForm}
+    
+          <label htmlFor="currentlyLearning">Currently learning: </label>
+          <input
+            type="text"
+            name="currentlyLearning"
+            value={this.state.currentlyLearning}
+            onChange={this.handleChange}
+            id="currentlyLearning"
+          />
           <br/>
+
     <label htmlFor="username">Username: </label>
           <input
             type="text"
@@ -147,7 +221,43 @@ class GraduateEdit extends React.Component{
             id="username"
           />
           <br/>
-          <label htmlFor="password">Password: </label>
+          <label htmlFor="emailaddress">Email: </label>
+          <input
+            type="text"
+            name="emailaddress"
+            value={this.state.emailaddress}
+            onChange={this.handleChange}
+            id="emailaddress"
+          />
+          <br/>
+          <label htmlFor="catchphrase">Catchphrase: </label>
+          <input
+            type="text"
+            name="catchphrase"
+            value={this.state.catchphrase}
+            onChange={this.handleChange}
+            id="catchphrase"
+          />
+          <br/>
+          <label htmlFor="githubProfile">Github Profile: </label>
+          <input
+            type="text"
+            name="githubProfile"
+            value={this.state.githubProfile}
+            onChange={this.handleChange}
+            id="githubProfile"
+          />
+          <br/>
+          <label htmlFor="linkedInProfile">LinkedIn Profile: </label>
+          <input
+            type="text"
+            name="linkedInProfile"
+            value={this.state.linkedInProfile}
+            onChange={this.handleChange}
+            id="linkedInProfile"
+          />
+          <br/>
+          {/* <label htmlFor="password">Password: </label>
           <input
             type="password"
             name="password"
@@ -155,7 +265,7 @@ class GraduateEdit extends React.Component{
             onChange={this.handleChange}
             id="password"
           />
-          <br/>
+          <br/> */}
           <button type="submit">Submit changes</button>
           {this.state.message && (
           <h3>{this.state.message}</h3>
