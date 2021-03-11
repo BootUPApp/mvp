@@ -87,68 +87,94 @@ class RecruiterSignup extends React.Component{
   render() {
     console.log()
     return (
+      <div className="recWrapper">
       <div className="recSignUpFrame">
-        <h1>Recruiter Signup</h1>
+        <h1 style={{color: 'white'}}>Recruiter Signup</h1>
       
         <form onSubmit={this.handleSubmit}>
-        <span className="input input--hoshi">
+        <span className="input input--chisato">
             <input
-            className="input__field input__field--hoshi"
+            className="input__field input__field--chisato"
               type="text"
               name="firstname"
               value={this.state.firstname}
               onChange={this.handleChange}
               id="firstname"
             />
-            <label htmlFor="firstname" className="input__label input__label--hoshi"><span className="input__label-content input__label-content--hoshi">Firstname</span> </label>
+            <label htmlFor="firstname" className="input__label input__label--chisato"><span className="input__label-content input__label-content--chisato">Firstname</span> </label>
       </span>
-<label htmlFor="lastname">lastname: </label>
+
+      <span className="input input--chisato">
+
             <input
+              className="input__field input__field--chisato"
               type="text"
               name="lastname"
               value={this.state.lastname}
               onChange={this.handleChange}
               id="lastname"
             />
-        <label htmlFor="imageUrl">Image: </label>
+            <label htmlFor="lastname" className="input__label input__label--chisato"><span className="input__label-content input__label-content--chisato">Lastname</span></label>
+            </span>
+            <span className="input input--chisato">
+        
+            <label htmlFor="imageUrl"><span className="input__label-content input__label-content--chisato">Image</span></label>
           <input
+          className="file"
             type="file"
             id="imageUrl"
             name="imageUrl"
             onChange={e => this.handleFileUpload(e)}
           />
+          
+            </span>
             <br/>
-            <label htmlFor="username">Username: </label>
+            <span className="input input--chisato">
+      
             <input
+             className="input__field input__field--chisato"
               type="text"
               name="username"
               value={this.state.username}
               onChange={this.handleChange}
               id="username"
             />
-            <br/>
-            <label htmlFor="password">Password: </label>
+              <label htmlFor="username" className="input__label input__label--chisato"><span className="input__label-content input__label-content--chisato">Username</span> </label>
+               </span>
+         
+
+            <span className="input input--chisato">
+            
             <input
+            className="input__field input__field--chisato"
               type="password"
               name="password"
               value={this.state.password}
               onChange={this.handleChange}
               id="password"
             />
+            <label htmlFor="password" className="input__label input__label--chisato"><span className="input__label-content input__label-content--chisato">Password</span> </label>
+     </span>
 
-<label htmlFor="companyname">Company name: </label>
+     <span className="input input--chisato">
+
           <input
+          className="input__field input__field--chisato"
             type="companyname"
             name="companyname"
             value={this.state.companyname}
             onChange={this.handleChange}
             id="companyname"/>
+            <label htmlFor="companyname" className="input__label input__label--chisato"><span className="input__label-content input__label-content--chisato">Company Name</span></label>
+                 </span>
             <br/>
-            <button type="submit">Sign Up</button>
+            <button style={{border: 'none', borderRadius: '5px', width: '40%', marginTop: '50px', backgroundColor: '#3100f9', position: 'relative', left: '-17px'}} type="submit"><h2 style={{color: 'white'}}>Sign Up</h2></button>
             {this.state.message && (
             <h3>{this.state.message}</h3>
           )}
-        </form>
+          </form>
+        </div>
+        <div className="recSignUpPic"></div>
       </div>
     )
   }

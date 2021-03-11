@@ -61,6 +61,10 @@ nav ul li{
 	align-items: center;
 }
 
+nav img{
+float: right;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -79,6 +83,9 @@ a:hover{
   color: rebeccapurple;
 }
 
+
+
+
 .input {
 	position: relative;
 	z-index: 1;
@@ -87,6 +94,7 @@ a:hover{
 	max-width: 350px;
 	width: calc(100% - 2em);
 	vertical-align: top;
+	border-radius: 5px;
 }
 
 .input__field {
@@ -97,11 +105,12 @@ a:hover{
 	width: 60%;
 	border: none;
 	border-radius: 0;
-	background: #f0f0f0;
+	background: white;
 	color: #aaa;
-	font-weight: bold;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: 400;
+	font-family: "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	-webkit-appearance: none; /* for box shadows to show on iOS */
+	border-radius: 5px;
 }
 
 .input__field:focus {
@@ -113,7 +122,7 @@ a:hover{
 	float: right;
 	padding: 0 1em;
 	width: 40%;
-	color: #6a7989;
+	color: #696969;
 	font-weight: bold;
 	font-size: 70.25%;
 	-webkit-font-smoothing: antialiased;
@@ -141,116 +150,142 @@ a:hover{
 }
 
 .icon {
-	color: #ddd;
+	color: black;
 	font-size: 150%;
 }
 
-.input--hoshi {
-	overflow: hidden;
+
+input[type="file"], select { 
+color: black;
+}
+input[type="file"] {
+  color:white
 }
 
-.input__field--hoshi {
-	margin-top: 1em;
-	padding: 0.85em 0.15em;
+.file{
+	background-color: black;
+}
+/* Chisato */
+
+
+
+.input--chisato {
+	padding-top: 1em;
+}
+
+.input__field--chisato {
 	width: 100%;
+	padding: 0.8em 0.5em;
 	background: transparent;
-	color: #595F6E;
+	border: 2px solid;
+	color: white;
+	-webkit-transition: border-color 0.25s;
+	transition: border-color 0.25s;
 }
 
-.input__label--hoshi {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	padding: 0 0.25em;
+.input__label--chisato {
 	width: 100%;
-	height: calc(100% - 1em);
-	text-align: left;
-	pointer-events: none;
-}
-
-.input__label-content--hoshi {
-	position: absolute;
-}
-
-.input__label--hoshi::before,
-.input__label--hoshi::after {
-	content: '';
 	position: absolute;
 	top: 0;
+	text-align: left;
+	overflow: hidden;
+	padding: 0;
+	pointer-events: none;
+	-webkit-transform: translate3d(0, 3em, 0);
+	transform: translate3d(0, 3em, 0);
+}
+
+.input__label-content--chisato {
+	padding: 0em;
+	font-weight: 400;
+	color: white;
+	position: relative;
+}
+
+.input__label-content--chisato::after {
+	content: attr(data-content);
+	position: absolute;
+	top: -200%;
 	left: 0;
-	width: 100%;
-	height: calc(100% - 10px);
-	border-bottom: 1px solid #B9C1CA;
+	color: #3100f9;
+	font-weight: 800;
 }
 
-.input__label--hoshi::after {
-	margin-top: 2px;
-	border-bottom: 4px solid red;
-	-webkit-transform: translate3d(-100%, 0, 0);
-	transform: translate3d(-100%, 0, 0);
-	-webkit-transition: -webkit-transform 0.3s;
-	transition: transform 0.3s;
+.input__field--chisato:focus,
+.input--filled .input__field--chisato {
+	border-color: #3100f9;
 }
 
-.input__label--hoshi-color-1::after {
-	border-color: hsl(200, 100%, 50%);
+.input__field--chisato:focus + .input__label--chisato,
+.input--filled .input__label--chisato {
+	-webkit-animation: anim-chisato-1 0.25s forwards;
+	animation: anim-chisato-1 0.25s forwards;
 }
 
-.input__label--hoshi-color-2::after {
-	border-color: hsl(160, 100%, 50%);
+.input__field--chisato:focus + .input__label--chisato .input__label-content--chisato,
+.input--filled .input__label-content--chisato {
+	-webkit-animation: anim-chisato-2 0.25s forwards ease-in;
+	animation: anim-chisato-2 0.25s forwards ease-in;
 }
 
-.input__label--hoshi-color-3::after {
-	border-color: hsl(20, 100%, 50%);
-}
-
-.input__field--hoshi:focus + .input__label--hoshi::after,
-.input--filled .input__label--hoshi::after {
-	-webkit-transform: translate3d(0, 0, 0);
-	transform: translate3d(0, 0, 0);
-}
-
-.input__field--hoshi:focus + .input__label--hoshi .input__label-content--hoshi,
-.input--filled .input__label-content--hoshi {
-	-webkit-animation: anim-1 0.3s forwards;
-	animation: anim-1 0.3s forwards;
-}
-
-@-webkit-keyframes anim-1 {
-	50% {
-		opacity: 0;
-		-webkit-transform: translate3d(1em, 0, 0);
-		transform: translate3d(1em, 0, 0);
+@-webkit-keyframes anim-chisato-1 {
+	0%, 70% {
+		-webkit-transform: translate3d(0, 3em, 0);
+		transform: translate3d(0, 3em, 0);
 	}
-	51% {
+	71%, 100% {
+		-webkit-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+@-webkit-keyframes anim-chisato-2 {
+	0% {
+		-webkit-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+	}
+	70%, 71% {
+		-webkit-transform: translate3d(0, 125%, 0);
+		transform: translate3d(0, 125%, 0);
 		opacity: 0;
-		-webkit-transform: translate3d(-1em, -40%, 0);
-		transform: translate3d(-1em, -40%, 0);
+		-webkit-animation-timing-function: ease-out;
 	}
 	100% {
-		opacity: 1;
-		-webkit-transform: translate3d(0, -40%, 0);
-		transform: translate3d(0, -40%, 0);
+		color: transparent;
+		-webkit-transform: translate3d(0, 200%, 0);
+		transform: translate3d(0, 200%, 0);
 	}
 }
 
-@keyframes anim-1 {
-	50% {
-		opacity: 0;
-		-webkit-transform: translate3d(1em, 0, 0);
-		transform: translate3d(1em, 0, 0);
+@keyframes anim-chisato-1 {
+	0%, 70% {
+		-webkit-transform: translate3d(0, 3em, 0);
+		transform: translate3d(0, 3em, 0);
 	}
-	51% {
-		opacity: 0;
-		-webkit-transform: translate3d(-1em, -40%, 0);
-		transform: translate3d(-1em, -40%, 0);
-	}
-	100% {
-		opacity: 1;
-		-webkit-transform: translate3d(0, -40%, 0);
-		transform: translate3d(0, -40%, 0);
+	71%, 100% {
+		-webkit-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
 	}
 }
+
+@keyframes anim-chisato-2 {
+	0% {
+		-webkit-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+	}
+	70%, 71% {
+		-webkit-transform: translate3d(0, 125%, 0);
+		transform: translate3d(0, 125%, 0);
+		opacity: 0;
+		-webkit-animation-timing-function: ease-out;
+	}
+	100% {
+		color: transparent;
+		-webkit-transform: translate3d(0, 200%, 0);
+		transform: translate3d(0, 200%, 0);
+	}
+}
+
 
 .selectImage{
 width: 100vw;
@@ -259,11 +294,30 @@ height: 100vh;
 }
 
 /*  Rec Sign Up Frame*/
+
+.recWrapper{
+	display: flex;
+	height: 100vh;
+	width: 100vw;
+	overflow: hidden;
+	position: relative;
+}
+
+.recSignUpPic{
+	width: 70%;
+	height: 100%;
+	background-image: url("./images/recLogin.jpg");
+	background-size: cover;
+	background-position: center;
+}
+
 .recSignUpFrame{
-	display:  flex;
+	width: 30%;
+	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	background-color: black;
 }
 
 .recSignUpFrame form{
@@ -351,4 +405,27 @@ margin-bottom: 150px;
 .selectButton button{
 	border: none;
 	border-radius: 5px;
+}
+
+
+
+.recruiterAccess{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 80vh;
+	position: relative;
+}
+
+.recruiterAccess button{
+	background-color: black;
+	padding: 20px 90px;
+	border: 2px solid transparent;
+	margin-left: 30px;
+	border-radius: 5px;
+
+}
+
+.recruiterAccess button h1 {
+	color: white;
 }
