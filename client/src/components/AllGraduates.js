@@ -126,7 +126,28 @@ handlerUserShit(wholeUserResponse) {
                       value={this.state.query}
                       onChange={this.handleChange}
                       />
+<<<<<<< HEAD
            
+=======
+            {/* <div className='keywordSearch'>
+
+            <h2>Industries</h2>
+            <button onClick={this.handleClick}>Gastronomy</button>
+            <button onClick={this.handleClick}>Art</button>
+            <button onClick={this.handleClick}>Consulting</button>
+            <button onClick={this.handleClick}>Politics</button>
+            <button onClick={this.handleClick}>HR</button>
+            <button onClick={this.handleClick}>Gastronomy</button>
+
+            <h2>Skills</h2>
+            <a onClick={this.handleClick}>React</a>
+            <a onClick={this.handleClick}>Express</a>
+            <a onClick={this.handleClick}>MongoDB</a>
+            <a onClick={this.handleClick}>Node</a>
+            <a onClick={this.handleClick}>Handlebars</a>
+
+            </div> */}
+>>>>>>> adam20
           
             </form>
 
