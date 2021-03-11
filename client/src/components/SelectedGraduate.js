@@ -3,7 +3,9 @@ import { Link, Redirect } from 'react-router-dom';
 import Moment from 'react-moment';
 import { Radar, defaults } from 'react-chartjs-2'
 import axios from 'axios';
-import GitHubCalendar from 'github-calendar'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+
 
 defaults.global.tooltips.enabled = false
 defaults.global.legend.position = 'bottom'
@@ -153,7 +155,7 @@ const showIndusty = selectedGraduate.map((elGraduate) => {
                 <h1>Currently Learning</h1>
                 <h2>{elGraduate.currentlyLearning}</h2>
         </div>
-        <div>
+        <div style={{height:`50vh`}}>
               <h1>Me as a gif</h1>
              <img src="https://media.giphy.com/media/Q61LJj43H48z1FIK4X/giphy.gif"/>
               </div>
@@ -257,6 +259,9 @@ const madonna = selectedGraduate.map((elGraduate) => {
          <div className="gitHubPlaceHolderImage"></div>
          {madonna}
         
+
+      
+
       </div>
     )
 }
