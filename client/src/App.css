@@ -289,3 +289,62 @@ height: 100vh;
 	padding: 150px;
 	background-size: cover;
 }
+
+.RadarChart{
+	position: relative;
+	top: -40px;
+}
+
+.nameDetails h1{
+	padding-left: 80px;
+	color: white;
+	position: relative;
+	top: -450px;
+}
+
+
+.nameDetails h2{
+	padding-left: 80px;
+	color: white;
+	position: relative;
+	top: -400px;
+}
+
+.chartjs-render-monitor{
+	height: 55vh;
+}
+
+.showIndusty{
+	display: flex;
+	justify-content:space-evenly;
+	flex-wrap: wrap;
+	margin-left: 80px;
+	overflow: hidden;
+}
+
+.showIndusty div{
+	width:50%;
+	margin-top: 40px;
+}
+
+.madonna{
+	display: flex;
+	justify-content:space-evenly;
+	flex-wrap: wrap;
+	margin-left: 80px;
+	overflow: hidden;
+}
+
+.madonna div{
+	width:50%;
+	margin-top: 40px;
+}
+
+.gitHubPlaceHolderImage{
+	width: 90%;
+	margin: 0 auto;
+height: 40vh;
+	background-image: url("./images/githubImage.png");
+	background-size: cover;
+	background-position: center;
+}

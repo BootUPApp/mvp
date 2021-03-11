@@ -70,13 +70,14 @@ console.log(getSelectedGraduate);
 
 const RadarChart = () => {
   return (
-    <div>
+    <div className="RadarChart">
+    <h1 style={{paddingLeft:`50px`}}>Skills</h1>
       <Radar data={{ 
         labels: skillDataKeys,
         datasets: [{
         data: skillDataValues,
-        backgroundColor:['rgb(53,252,182)'],
-        borderColor: ['rgb(53,252,182)'],
+        backgroundColor:['rgb(237, 28, 36)'],
+        borderColor: ['rgb(237, 28, 36)'],
         pointBackgroundColor: false
     }]
    }}
@@ -91,8 +92,17 @@ const RadarChart = () => {
             gridLines: {
             color: '#F6F9FF'
             },
+            pointLabels:{
+              fontColor:'black',
+              fontSize: 20
+            }
         },
-       
+        legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontColor: 'red'
+            }
+        }
    }}
    legend ={{
      display:false
@@ -102,70 +112,94 @@ const RadarChart = () => {
   )
 }
 
+const showImage = selectedGraduate.map((elGraduate) => {
+  if(elGraduate._id === paramsId){
+      return(
+        <div className='selectImage' style={{backgroundImage: `url("${elGraduate.imageUrl}")`}}></div>
+      )
+  }
+})
+
+const showFirstLastName =  selectedGraduate.map((elGraduate) => {
+  if(elGraduate._id === paramsId){
+      return(
+        <div className='nameDetails'>
+          <h1>{elGraduate.firstName} <br/> {elGraduate.lastName}</h1>
+          <h2>"{elGraduate.catchphrase} Battle Cry Hard Coded"</h2>
+        </div>
+      )
+  }
+})
 
 
 
-/* Sample Chart
-const BarChart = () => {
-  return (
-    <div className="BarChart">
-      <Pie
-        data={{
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-          datasets: [
-            {
-              label: '# of votes',
-              data: [12, 19, 3, 5, 2, 3],
-              backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-              ],
-              borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
-              ],
-              borderWidth: 1,
-            },
-            // {
-            //   label: 'Quantity',
-            //   data: [47, 52, 67, 58, 9, 50],
-            //   backgroundColor: 'orange',
-            //   borderColor: 'red',
-            // },
-          ],
-        }}
-        height={400}
-        width={600}
-        options={{
-          maintainAspectRatio: false,
-          scales: {
-            yAxes: [
-              {
-                ticks: {
-                  beginAtZero: true,
-                },
-              },
-            ],
-          },
-          legend: {
-            labels: {
-              fontSize: 25,
-            },
-          },
-        }}
-      />
-    </div>
-  )
-}
-*/
+const showIndusty = selectedGraduate.map((elGraduate) => {
+  if(elGraduate._id === paramsId){
+      return(
+        <div className="showIndusty">
+
+        <div>
+                <h1>Industry</h1>
+                <h2>{elGraduate.yearsInIndustry} Years experience in {elGraduate.industry}</h2>
+        </div>
+        <div>
+              <h1>Languages</h1>
+              <h2>        
+              {elGraduate.languagesSpoken}
+              </h2>
+              </div>
+
+              <div>
+                <h1>Currently Learning</h1>
+                <h2>{elGraduate.currentlyLearning}</h2>
+        </div>
+        <div>
+              <h1>Me as a gif</h1>
+             <img src="https://media.giphy.com/media/Q61LJj43H48z1FIK4X/giphy.gif"/>
+              </div>
+
+          
+
+        </div>
+        
+      )
+  }
+})
+
+const madonna = selectedGraduate.map((elGraduate) => {
+  if(elGraduate._id === paramsId){
+      return(
+        <div className="madonna">
+
+        <div>
+                <h1>Industry</h1>
+                <h2>{elGraduate.yearsInIndustry} Years experience in {elGraduate.industry}</h2>
+        </div>
+        <div>
+              <h1>Languages</h1>
+              <h2>        
+              {elGraduate.languagesSpoken}
+              </h2>
+              </div>
+
+              <div>
+                <h1>Currently Learning</h1>
+                <h2>{elGraduate.currentlyLearning}</h2>
+        </div>
+        <div>
+              <h1>Me as a gif</h1>
+             <img src="https://media.giphy.com/media/Q61LJj43H48z1FIK4X/giphy.gif"/>
+              </div>
+
+          
+
+        </div>
+        
+      )
+  }
+})
+
+
 
     const showGraduate = selectedGraduate.map((graduate) => {
 
@@ -189,10 +223,6 @@ const BarChart = () => {
       if(graduate._id === paramsId){
         return(
           <div key={graduate._id}>
-            <div className='selectImage' style={{backgroundImage: `url("${graduate.imageUrl}")`}}>
-            </div>
-            <h1>{graduate.firstName} {graduate.lastName}</h1>
-            <h2>"{graduate.catchphrase}"</h2>
             <p>{graduate.bootCampName}, {graduate.bootCampCity}</p>
             <p>Graduated: <Moment format="MM/YYYY">{graduate.bootCampGraduation}</Moment></p>
             <h3>Skills:</h3>
@@ -219,12 +249,16 @@ const BarChart = () => {
     })
     return(
       <div>
+      {showImage}
+      {showFirstLastName}
          {RadarChart()}
-        {showGraduate}
-        <div className="calendar">
-        
-      </div>
+         {showIndusty}
+         <h1 style={{marginLeft: `80px`}}>My GitHub</h1>
+         <div className="gitHubPlaceHolderImage"></div>
+         {madonna}
         
       </div>
     )
 }
+
+//{showGraduate}
