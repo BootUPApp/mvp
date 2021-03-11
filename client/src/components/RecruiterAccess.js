@@ -23,5 +23,6 @@ export default function Recruiter() {
       <Link to={'/recruiter/signup'}>Signup</Link>
 
     </div>
+    </div>
   )
 }
