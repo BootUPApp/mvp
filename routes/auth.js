@@ -86,6 +86,7 @@ req.login(user, err => {
 router.get("/loggedin", (req,res, next) => {
   res.json(req.user)
   res.send('Hello');
+  return;
 })
 
 // Graduate Sign Up / Insomnia Tested X
