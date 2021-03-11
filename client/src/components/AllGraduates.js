@@ -22,7 +22,7 @@ class AllGraduates extends React.Component {
   componentDidMount() {
     axios.get('/api/graduates')
     .then(response => {
-       console.log('Hi from axios,', response)
+       console.log('Hi from axios,', response.data.InputList)
       this.setState({
         users: response.data
       })
@@ -47,7 +47,9 @@ class AllGraduates extends React.Component {
  // style={{backgroundImage: `url("${graduate.imageUrl}")`}}
 
        render(){
-        console.log('All graduates:', this.state.users.inputList)
+
+        let filteredResults
+        console.log('All graduates:', this.state.users)
 
         let searchResults = this.state.users.filter((graduate) => {
           return graduate.firstName.toLowerCase().includes(this.state.query) ||
@@ -57,14 +59,14 @@ class AllGraduates extends React.Component {
         
         let displayGraduates = searchResults.map(graduate => {
 
-          new hoverEffect({
-            parent: document.querySelector(".gradPics"),
-            intensity: 0.3,
-            image1: "`${graduate.imageUrl}`",
-            image2: "`${graduate.imageUrl}`",
-            displacementImage:
-              "https://raw.githubusercontent.com/robin-dela/hover-effect/master/images/fluid.jpg"
-          });
+          // new hoverEffect({
+          //   parent: document.querySelector(".gradPics"),
+          //   intensity: 0.3,
+          //   image1: "`${graduate.imageUrl}`",
+          //   image2: "`${graduate.imageUrl}`",
+          //   displacementImage:
+          //     "https://raw.githubusercontent.com/robin-dela/hover-effect/master/images/fluid.jpg"
+          // });
 
           return(
        
@@ -78,10 +80,7 @@ class AllGraduates extends React.Component {
                }
               }}>{graduate.firstName} {graduate.lastName}</Link>
 
-
-
-
-</div>
+              </div>
           </div>
           
           )
@@ -101,26 +100,27 @@ class AllGraduates extends React.Component {
                       value={this.state.query}
                       onChange={this.handleChange}
                       />
-            <div class='keywordSearch'>
+            {/* <div className='keywordSearch'>
 
             <h2>Industries</h2>
-            <a onClick=''>Gastronomy</a>
-            <a onClick=''>Art</a>
-            <a onClick=''>Consulting</a>
-            <a onClick=''>Politics</a>
-            <a onClick=''>HR</a>
+            <button onClick={this.handleClick}>Gastronomy</button>
+            <button onClick={this.handleClick}>Art</button>
+            <button onClick={this.handleClick}>Consulting</button>
+            <button onClick={this.handleClick}>Politics</button>
+            <button onClick={this.handleClick}>HR</button>
+            <button onClick={this.handleClick}>Gastronomy</button>
 
             <h2>Skills</h2>
-            <a onClick=''>React</a>
-            <a onClick=''>Express</a>
-            <a onClick=''>MongoDB</a>
-            <a onClick=''>Node</a>
-            <a onClick=''>Handlebars</a>
+            <a onClick={this.handleClick}>React</a>
+            <a onClick={this.handleClick}>Express</a>
+            <a onClick={this.handleClick}>MongoDB</a>
+            <a onClick={this.handleClick}>Node</a>
+            <a onClick={this.handleClick}>Handlebars</a>
 
-            </div>
-            
-
+            </div> */}
+          
             </form>
+
             <div className='Filters'>
               <h2>Filters</h2>
               <h3>Industries</h3>
