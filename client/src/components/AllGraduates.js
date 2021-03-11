@@ -7,7 +7,16 @@ class AllGraduates extends React.Component {
   
   state = {
     users: [],
-    query: ''
+    query: '',
+    Gastronomy: false,
+    Art: false,
+    Consulting: false,
+    HR: false,
+    React: false,
+    Express: false,
+    MongoDB: false,
+    Node: false,
+    Handlebars: false
   }
 
   componentDidMount() {
@@ -31,10 +40,14 @@ class AllGraduates extends React.Component {
     }))
   }
 
+  handleClick = event => {
+
+  }
+
  // style={{backgroundImage: `url("${graduate.imageUrl}")`}}
 
        render(){
-        console.log('All graduates:', this.state.users)
+        console.log('All graduates:', this.state.users.inputList)
 
         let searchResults = this.state.users.filter((graduate) => {
           return graduate.firstName.toLowerCase().includes(this.state.query) ||
@@ -88,6 +101,25 @@ class AllGraduates extends React.Component {
                       value={this.state.query}
                       onChange={this.handleChange}
                       />
+            <div class='keywordSearch'>
+
+            <h2>Industries</h2>
+            <a onClick=''>Gastronomy</a>
+            <a onClick=''>Art</a>
+            <a onClick=''>Consulting</a>
+            <a onClick=''>Politics</a>
+            <a onClick=''>HR</a>
+
+            <h2>Skills</h2>
+            <a onClick=''>React</a>
+            <a onClick=''>Express</a>
+            <a onClick=''>MongoDB</a>
+            <a onClick=''>Node</a>
+            <a onClick=''>Handlebars</a>
+
+            </div>
+            
+
             </form>
             <div className='Filters'>
               <h2>Filters</h2>
