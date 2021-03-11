@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { logout } from '../services/auth'
+import logo from '../images/bootUpLogo.png'
+
 
 const handleLogout = props => {
   logout().then(() => {
@@ -12,6 +14,7 @@ export default function Navbar(props) {
   // console.log(props.user)
   return (
     <nav>
+          <img  src={logo} style={{height: '120px' }}/>
       <ul>
         <li>
           <Link to='/'>Home</Link>
@@ -51,6 +54,7 @@ export default function Navbar(props) {
             </>
           )}
       </ul>
+
     </nav>
   )
 }
