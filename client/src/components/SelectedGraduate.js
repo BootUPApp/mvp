@@ -82,8 +82,8 @@ const RadarChart = () => {
         labels: skillDataKeys,
         datasets: [{
         data: skillDataValues,
-        backgroundColor:['rgb(237, 28, 36)'],
-        borderColor: ['rgb(237, 28, 36)'],
+        backgroundColor:['rgb(49, 0, 249)'],
+        borderColor: ['rgb(49, 0, 249)'],
         pointBackgroundColor: false
     }]
    }}
@@ -146,7 +146,7 @@ const showIndusty = selectedGraduate.map((elGraduate) => {
 
         <div>
                 <h1>Industry</h1>
-                <h2>{elGraduate.yearsInIndustry} Years experience in {elGraduate.industry}</h2>
+                <h2><span style={{color: '#3100f9'}}>{elGraduate.yearsInIndustry}</span> Years experience in <span style={{color: '#3100f9'}}>{elGraduate.industry}</span></h2>
         </div>
         <div>
               <h1>Languages</h1>
@@ -157,7 +157,7 @@ const showIndusty = selectedGraduate.map((elGraduate) => {
 
               <div>
                 <h1>Currently Learning</h1>
-                <h2 style={{display: 'flex', flexDirection:'column'}}>{elGraduate.currentlyLearning}</h2>
+                <h2 style={{display: 'flex', flexDirection:'column', color:"#3100f9"}}>{elGraduate.currentlyLearning}</h2>
         </div>
         <div style={{height:`50vh`}}>
               <h1>Me as a gif</h1>
@@ -211,7 +211,7 @@ const showButton =  selectedGraduate.map((graduate) => {
   if(graduate._id === paramsId){
       return(
         <div className="selectButton" style={{display:'flex', justifyContent:'center'}}>
-          <a href={"mailto:" + graduate.emailAddress}><button><h1>Contact</h1></button></a>
+          <a href={"mailto:" + graduate.emailAddress}><button style={{backgroundColor: '#3100f9', color:'white' , padding: '5px 20px'}}><h1>Contact</h1></button></a>
         </div>
       )
   }
