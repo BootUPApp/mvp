@@ -49,9 +49,6 @@ export default function Recruiter() {
       <div style={{backgroundImage: `url(${image12})`}}></div>
       </div>
 
-  
-
-
     </div>
     </div>
   )

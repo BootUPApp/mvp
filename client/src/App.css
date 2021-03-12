@@ -432,12 +432,50 @@ margin-bottom: 150px;
 	padding-left: 80px;
 }
 
+/* .Filters button{
+	background-color: grey;
+	font-weight: bold;
+	color: white;
+	padding: 20px 40px;
+	border: 2px solid transparent;
+	margin-left: 15px;
+	margin-right: 15px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	border-radius: 5px;
+
+} */
+
+
 .graduateProfile {
 	padding-left: 80px;
 }
 
 .accessPage {
 	padding-left: 80px;
+}
+
+
+.gradbutton {
+  background-color: darkgray;
+	font-weight: bold;
+	color: white;
+	padding: 20px 40px;
+	border: 2px solid transparent;
+	margin-left: 15px;
+	margin-right: 15px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	border-radius: 5px;
+  box-shadow: 0 2px grey;
+}
+
+.gradbutton:hover {background-color: #3100F9}
+
+.gradbutton:active {
+  background-color: grey;
+  box-shadow: 0 0px black;
+  transform: translateY(4px);
 }
 
 .absolouteRecruiterAccess{
@@ -545,4 +583,3 @@ color: white;
 	-webkit-transform: scale(1.1);
 	transform: scale(1.1);
 }
-

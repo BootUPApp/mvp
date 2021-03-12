@@ -84,7 +84,7 @@ setUser = user => {
           exact path='/graduate/dashboard/:id'
           user={this.state.user}
           component={GraduateDashboard}
-          redirectPath='/recruiter/login'
+          redirectPath='/graduate/login'
         />
         <ProtectedRoute
           exact path='/graduates'
