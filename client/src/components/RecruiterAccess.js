@@ -50,7 +50,6 @@ export default function Recruiter() {
       </div>
 
     </div>
-    </div>
   )
 }
 
