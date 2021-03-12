@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.05226d58.chunk.css",
-    "main.js": "/static/js/main.8f328fe5.chunk.js",
-    "main.js.map": "/static/js/main.8f328fe5.chunk.js.map",
+    "main.css": "/static/css/main.34d966fb.chunk.css",
+    "main.js": "/static/js/main.7b3f0495.chunk.js",
+    "main.js.map": "/static/js/main.7b3f0495.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.46b40f27.js",
     "runtime-main.js.map": "/static/js/runtime-main.46b40f27.js.map",
     "static/js/2.c71a984f.chunk.js": "/static/js/2.c71a984f.chunk.js",
@@ -10,18 +10,30 @@
     "static/js/3.19eb4a40.chunk.js": "/static/js/3.19eb4a40.chunk.js",
     "static/js/3.19eb4a40.chunk.js.map": "/static/js/3.19eb4a40.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.05226d58.chunk.css.map": "/static/css/main.05226d58.chunk.css.map",
+    "static/css/main.34d966fb.chunk.css.map": "/static/css/main.34d966fb.chunk.css.map",
     "static/js/2.c71a984f.chunk.js.LICENSE.txt": "/static/js/2.c71a984f.chunk.js.LICENSE.txt",
     "static/media/alex.a9be6c49.jpg": "/static/media/alex.a9be6c49.jpg",
     "static/media/arrow-right-red.0ea06658.svg": "/static/media/arrow-right-red.0ea06658.svg",
     "static/media/bootUpLogo.9cccda2a.png": "/static/media/bootUpLogo.9cccda2a.png",
     "static/media/josh.5ad450b7.jpg": "/static/media/josh.5ad450b7.jpg",
+    "static/media/recLog1.fa88108b.jpg": "/static/media/recLog1.fa88108b.jpg",
+    "static/media/recLog10.92464771.jpg": "/static/media/recLog10.92464771.jpg",
+    "static/media/recLog11.7819f0d8.jpg": "/static/media/recLog11.7819f0d8.jpg",
+    "static/media/recLog12.77445c01.jpg": "/static/media/recLog12.77445c01.jpg",
+    "static/media/recLog2.1086450e.jpg": "/static/media/recLog2.1086450e.jpg",
+    "static/media/recLog3.75668f74.jpg": "/static/media/recLog3.75668f74.jpg",
+    "static/media/recLog4.8a11c5d2.jpg": "/static/media/recLog4.8a11c5d2.jpg",
+    "static/media/recLog5.1a479c01.jpg": "/static/media/recLog5.1a479c01.jpg",
+    "static/media/recLog6.5509c220.webp": "/static/media/recLog6.5509c220.webp",
+    "static/media/recLog7.f56928cb.jpg": "/static/media/recLog7.f56928cb.jpg",
+    "static/media/recLog8.37521953.jpg": "/static/media/recLog8.37521953.jpg",
+    "static/media/recLog9.20672743.png": "/static/media/recLog9.20672743.png",
     "static/media/App.css": "/static/media/recLogin.c2519045.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.46b40f27.js",
     "static/js/2.c71a984f.chunk.js",
-    "static/css/main.05226d58.chunk.css",
-    "static/js/main.8f328fe5.chunk.js"
+    "static/css/main.34d966fb.chunk.css",
+    "static/js/main.7b3f0495.chunk.js"
   ]
 }
