@@ -101,14 +101,15 @@ handlerUserShit(wholeUserResponse) {
           return(
        
             <div className="allgrads" key={graduate._id}>
-              <div className='gradPics' style={{backgroundImage: `url("${graduate.imageUrl}")`}}></div>
+              
               <div>
              <Link to={{
                pathname: `/graduates/${graduate._id}`,
              state: {
                 graduate: this.state.users
                }
-              }}>{this.Capitalise(graduate.firstName)} {this.Capitalise(graduate.lastName)}</Link>
+              }}><div className='gradPics' style={{backgroundImage: `url("${graduate.imageUrl}")`}}></div>
+              {this.Capitalise(graduate.firstName)} {this.Capitalise(graduate.lastName)}</Link>
 
               </div>
           </div>
@@ -134,11 +135,31 @@ handlerUserShit(wholeUserResponse) {
           
             </form>
 
-            <div className='Filters'>
+            <div >
               <h2>Filters</h2>
               <h3>Industries</h3>
-              <h3>Skills</h3>
-              <h3>Learning</h3>
+              <div>
+                <button className='gradbutton'>Gastronomy</button>
+                <button className='gradbutton'>Art</button>
+                <button className='gradbutton'>Consulting</button>
+                <button className='gradbutton'>Politics</button>
+                <button className='gradbutton'>HR</button>
+
+                <h3>Skills</h3>
+
+                <button className='gradbutton'>React</button>
+                <button className='gradbutton'>Express</button>
+                <button className='gradbutton'>MongoDB</button>
+                <button className='gradbutton'>Node</button>
+                <button className='gradbutton'>Handlebars</button>
+
+                <h3>Learning</h3>
+
+                <button className='gradbutton'>TypeScript</button>
+                <button className='gradbutton'>Ruby</button>
+                <button className='gradbutton'>Python</button>
+              </div>
+              
             </div>
           
               <div className="meso">
